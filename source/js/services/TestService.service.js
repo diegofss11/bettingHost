@@ -4,13 +4,13 @@
 	/**
 	 * @ngdoc service
 	 * @name TestService
-	 * @description 
+	 * @description
 	 * This is a test service
 	 */
 
 
-	angular.module('app')
+	angular.module('tourManager')
 		.service('testService', function(){
-			
+
 		});
 })();

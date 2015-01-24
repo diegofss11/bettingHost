@@ -1,11 +1,16 @@
 {
-  "name": "myAngularSeed",
-  "description": "My angular seed for application starter",
+  "name": "TourManager",
+  "description": "An application to manager your competitors of any competition",
   "version": "0.0.0",
-  "repository": "https://github.com/diegofss11/myAngularSeed",
+  "repository": "https://github.com/diegofss11/tourManager",
   "license": "MIT",
   "devDependencies": {
     "angular": "~1.3.2",
-    "angular-mocks": "~1.3.2"
+    "angular-mocks": "~1.3.2",
+    "angular-material": "master",
+    "angular-animate": "~1.3.10",
+    "angular-aria": "~1.3.10",
+    "hammerjs": "~2.0.4",
+    "ngstorage": "~0.3.0"
   }
 }

@@ -12,14 +12,14 @@
 	    </example>
 	 */
 
-	angular.module('app')
+	angular.module('tourManager')
 		.directive('testDirective', function(){
 			return {
 				restrict: 'EA',
-				templateUrl: '/source/partials/TestTemplate.html'						
+				templateUrl: '/source/partials/TestTemplate.html'
 			};
 		});
-})();  
+})();
 
 
 

@@ -1,6 +1,4 @@
-angular.module('app.modules', []).run(['$templateCache', function($templateCache) {
-  $templateCache.put("../source/partials/TestTemplate.html",
-    "{{ 1 + 1 }}");
-  $templateCache.put("../source/partials/TestTemplate2.html",
-    "{{ 5+5 }}");
+angular.module('tourManager.tpls', []).run(['$templateCache', function($templateCache) {
+    $templateCache.put('partials/TestTemplate2.tpl.html',
+        '{{ 5+5 }}');
 }]);

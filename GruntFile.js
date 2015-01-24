@@ -1,6 +1,6 @@
-var Dgeni = require('dgeni'); 
+var Dgeni = require('dgeni');
 
-module.exports = function( grunt ) { 
+module.exports = function( grunt ) {
 	require('time-grunt')(grunt); //shows the execution time for tasks
 
 	grunt.initConfig({
@@ -9,16 +9,16 @@ module.exports = function( grunt ) {
 		connect: { //task
 			server:{ //target
 				options: { //target option
-					port: 8001, 
+					port: 8001,
 					hostname: 'localhost', // Change this to '0.0.0.0' to access the server from outside.
 					keepalive: true,
 					open: true
 				}
 			}
 		},
-		karma: { 
-	        unit: { 
-	            configFile: 'config/karma.conf.js'	            
+		karma: {
+	        unit: {
+	            configFile: 'config/karma.conf.js'
 	        }
 	    },
 	    protractor: {
@@ -33,10 +33,10 @@ module.exports = function( grunt ) {
 			build: {
 				options: {
 					sassDir: 'source/styles',
-					cssDir: 'source/dist/styles/css'					
+					cssDir: 'source/dist/styles/css'
 				}
 			}
-		},		
+		},
 		uglify: {
 		    app: {
 		    	files: {
@@ -62,8 +62,14 @@ module.exports = function( grunt ) {
 		},
 		html2js: {
 			options: {
-				module: 'app.modules',
-				singleModule: true,
+				quoteChar: '\'',
+				rename: function(moduleName) {
+        			return moduleName.replace('../source/partials/', '');
+      			},
+      			module: 'tourManager.tpls',
+      			base: 'source',
+      			indentString: '    ',
+      			singleModule: true,
 				useStrict: true,
 				htmlmin: {
 					collapseBooleanAttributes: true,
@@ -74,10 +80,10 @@ module.exports = function( grunt ) {
 					removeRedundantAttributes: true,
 					removeScriptTypeAttributes: true,
 					removeStyleLinkTypeAttributes: true
-    			}
+				}
 			},
 			main: {
-      			src: ['source/partials/*.html'],
+				src: ['source/partials/*.tpl.html'],
       			dest: 'source/dist/js/templates_cache.js'
     		}
 		},
@@ -86,9 +92,26 @@ module.exports = function( grunt ) {
 		    app: {
 		      	files: {
 		      		'index.html' : [
+		        		//JS
 		        		'bower_components/angular/angular.js',
-		        		'source/js/**/*js', 		          		
-		          		'source/dist/styles/css/main.css'
+		        		'source/dist/js/templates_cache.js',
+		        		'bower_components/hammerjs/hammer.js',
+		        		'bower_components/ngstorage/ngStorange.js',
+		        		'bower_components/angular-animate/angular-animate.js',
+		        		'bower_components/angular-aria/angular-aria.js',
+		        		'bower_components/angular-material/angular-material.js',
+
+		        		//APP FILES
+		        		'source/js/app.js',
+		        		'source/js/**/*.controller.js',
+		        		'source/js/**/*.service.js',
+		        		'source/js/**/*.directive.js',
+		        		'source/js/**/*.decorator.js',
+
+						//CSS
+		          		'source/dist/styles/css/main.css',
+		          		'bower_components/angular-material/angular-material.css',
+		          		'bower_components/angular-material/default-theme.css'
 		        	]
 		        }
 		    },
@@ -99,7 +122,7 @@ module.exports = function( grunt ) {
 	        },
 	        app: {
 	            files: {
-	            	'source/dist/js/temp/Annotated.js' : ['source/js/**/*.js']	            	
+	            	'source/dist/js/temp/Annotated.js' : ['source/js/**/*.js']
 	            }
 	        }
     	},
@@ -116,14 +139,14 @@ module.exports = function( grunt ) {
      		 },
       		css: {
 		        files: ['source/styles/*.scss'],
-		        tasks: ['compass']		        
+		        tasks: ['compass']
       		}
 		}
   	});
 
   	// ===========================================================================
   	// LOAD GRUNT PLUGINS ========================================================
-    // =========================================================================== 
+    // ===========================================================================
 	grunt.loadNpmTasks('grunt-contrib-compass'); //compile SASS to CSS - must install compass through gem - gem install compass
 	grunt.loadNpmTasks('grunt-contrib-connect'); //connect a webservice
 	grunt.loadNpmTasks('grunt-contrib-clean'); //
@@ -135,26 +158,26 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks('grunt-ng-annotate'); //adds and removes AngularJS dependency injection using annotations
 	grunt.loadNpmTasks('grunt-protractor-runner'); //plugin for protractor runner
 	grunt.loadNpmTasks('grunt-open'); //open urls and files from a grunt task
-	grunt.loadNpmTasks('grunt-karma'); //karma test runner	
-	
+	grunt.loadNpmTasks('grunt-karma'); //karma test runner
+
 
 	// ===========================================================================
   	// REGISTER TASKS ============================================================
-  	// ===========================================================================	
+  	// ===========================================================================
 
-  	//TESTS  
+  	//TESTS
 	grunt.registerTask('test',['karma']);
 	grunt.registerTask('test-protractor',['protractor']);
-	// ===========================================================================	
+	// ==========================================================================
 
 
 	grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
-		var done = this.async(), 
+		var done = this.async(),
 			dgeni = new Dgeni([require('./docs/dgeni-conf')]);
-		
+
 		dgeni.generate().then(done);
-	});	
-	
+	});
+
 	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'connect:server', 'open:build', 'watch', 'clean:temp']);
 
 	grunt.registerTask('build',['clean:dist', 'compass', 'html2js', 'injector' ,'jshint', 'ngAnnotate', 'dgeni', 'uglify', 'connect:server', 'open:build', 'watch', 'clean:temp']);
