@@ -8,8 +8,8 @@
 	function LoginService($http, CONSTANTS){
 		var _self = this;
 
-		_self.validateLogin = function(user, success, error) {
-			$http.post(CONSTANTS.SERVER_BASE_URL + '/authenticate', user)
+		_self.authenticate = function(user, success, error) {
+			$http.post(CONSTANTS.SERVER_BASE_URL + '/auth/login', user)
 				.success(function onAuthenticateSuccess(data){
 					console.log('SUCCESS', data);
 				})

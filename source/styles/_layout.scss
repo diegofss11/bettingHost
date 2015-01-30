@@ -1,0 +1,53 @@
+///////////
+//LAYOUT //
+///////////
+
+@import "_variables";
+
+header.header {
+	position: absolute;
+	top: 0;
+	background-color: green;
+	height: 50px;
+}
+
+.v-center {
+	margin-top: 50%;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    max-width: 550px;
+    min-width: 330px;
+    height: auto;
+    z-index: 2000;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.sign-up-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.demo-modal {
+    border: 1px solid black;
+    background-color: #ccc;
+    padding: 5px;
+}
+
+.signUp-modal .footer-btn {
+    .btn {
+        width: 45%;
+    }
+
+    .btn-secondary {
+        margin-left: 9%;
+    }
+}

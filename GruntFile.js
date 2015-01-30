@@ -93,13 +93,17 @@ module.exports = function( grunt ) {
 		      	files: {
 		      		'index.html' : [
 		        		//JS
+		        		'bower_components/jquery/dist/jquery.js',
 		        		'bower_components/angular/angular.js',
-		        		'source/dist/js/templates_cache.js',
-		        		'bower_components/hammerjs/hammer.js',
-		        		'bower_components/ngstorage/ngStorange.js',
 		        		'bower_components/angular-animate/angular-animate.js',
 		        		'bower_components/angular-aria/angular-aria.js',
-		        		'bower_components/angular-material/angular-material.js',
+		        		'bower_components/angular-ui-router/release/angular-ui-router.js',
+		        		'bower_components/angular-modal/modal.js',
+		        		'bower_components/angular-bootstrap/ui-bootstrap.js',
+		        		'bower_components/angular-messages/angular-messages.js',
+		        		'source/dist/js/templates_cache.js',
+		        		'bower_components/satellizer/satellizer.js',
+		        		'bower_components/ngstorage/ngStorange.js',
 
 		        		//APP FILES
 		        		'source/js/app.js',
@@ -107,11 +111,10 @@ module.exports = function( grunt ) {
 		        		'source/js/**/*.service.js',
 		        		'source/js/**/*.directive.js',
 		        		'source/js/**/*.decorator.js',
+		        		'source/js/**/*.dialog.js',
 
 						//CSS
-		          		'source/dist/styles/css/main.css',
-		          		'bower_components/angular-material/angular-material.css',
-		          		'bower_components/angular-material/default-theme.css'
+		          		'source/dist/styles/css/main.css'
 		        	]
 		        }
 		    },

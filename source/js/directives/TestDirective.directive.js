@@ -4,7 +4,7 @@
 	/**
 	 * @ngdoc directive
 	 * @name TestDirective
-	 * @description 
+	 * @description
 	 * This is a test directive
 	 * @example
 	   <example>
@@ -16,11 +16,7 @@
 		.directive('testDirective', function(){
 			return {
 				restrict: 'EA',
-				templateUrl: '/source/partials/TestTemplate.html'
+				templateUrl: 'partials/TestTemplate.html'
 			};
 		});
 })();
-
-
-
-

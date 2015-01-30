@@ -7,10 +7,15 @@
   "devDependencies": {
     "angular": "~1.3.2",
     "angular-mocks": "~1.3.2",
-    "angular-material": "master",
     "angular-animate": "~1.3.10",
     "angular-aria": "~1.3.10",
-    "hammerjs": "~2.0.4",
-    "ngstorage": "~0.3.0"
+    "ngstorage": "~0.3.0",
+    "satellizer": "~0.9.0",
+    "bootstrap": "~3.3.2",
+    "angular-bootstrap": "~0.12.0",
+    "angular-messages": "~1.3.11",
+    "angular-ui-router": "~0.2.13",
+    "angular-modal": "~0.4.0",
+    "jquery": "~2.1.3"
   }
 }

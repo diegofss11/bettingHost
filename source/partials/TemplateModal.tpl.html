@@ -1,0 +1,10 @@
+<div class="template-modal">
+	<div class="modal-overlay" ng-click="close()"></div>
+	<div class="modal">
+		<header class="modal-header">
+			<button class="btn-text modal-close" ng-click="close()">×</button>
+			<h1 class="modal-title heading-large">{{ title }}</h1>
+		</header>
+		<div class="modal-content" ng-transclude></div>
+	</div>
+</div>

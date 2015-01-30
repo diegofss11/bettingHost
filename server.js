@@ -44,7 +44,7 @@ mongoose.connect(constants.MONGO_DB_CONNECTION_URL);
 mongoose.set('debug', true);
 
 db = mongoose.connection;
-db.on('error', console.error.bind(console, 'CONNECTION ERROR: '));
+db.on('error', console.error.bind(console, 'MongoDB CONECTION ERROR. Please make sure that MongoDB is running. '));
 db.once('open', function databaseOpenCallback() {
 	console.log('Connected on DATABASE');
 });
@@ -53,6 +53,95 @@ db.once('open', function databaseOpenCallback() {
 ///////////////
 //OPERATIONS //
 ///////////////
+
+
+//////////
+//LOGIN //
+//////////
+app.post('/auth/login', function(req, res) {
+  UserModel.findOne({ login: req.body.login }, '+password', function(err, user) {
+    if (!user) {
+      return res.status(401).send({ message: 'Wrong email and/or password' });
+    }
+
+    user.comparePassword(req.body.password, function(err, isMatch) {
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Wrong email and/or password' });
+      }
+
+      res.send({ token: createToken(user) });
+    });
+  });
+});
+
+
+//Google Login
+app.post('/auth/google', function(req, res) {
+    var accessTokenUrl = 'https://accounts.google.com/o/oauth2/token',
+        peopleApiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect';
+        params = {
+            code: req.body.code,
+            client_id: req.body.clientId,
+            client_secret: config.GOOGLE_SECRET,
+            redirect_uri: req.body.redirectUri,
+            grant_type: 'authorization_code'
+        };
+
+    console.log('hey');
+    // Step 1. Exchange authorization code for access token.
+    request.post(accessTokenUrl, { json: true, form: params }, function(err, response, token) {
+        var accessToken = token.access_token,
+            headers = { Authorization: 'Bearer ' + accessToken };
+
+    // Step 2. Retrieve profile information about the current user.
+    request.get({ url: peopleApiUrl, headers: headers, json: true }, function(err, response, profile) {
+        var token, payload;
+
+        // Step 3a. Link user accounts.
+        if (req.headers.authorization) {
+            UserModel.findOne({ google: profile.sub }, function(err, existingUser) {
+
+                if (existingUser) {
+                    return res.status(409).send({ message: 'There is already a Google account that belongs to you' });
+                }
+
+                token = req.headers.authorization.split(' ')[1];
+                payload = jwt.decode(token, config.TOKEN_SECRET);
+
+                UserModel.findById(payload.sub, function(err, user) {
+
+                    if (!user) {
+                        return res.status(400).send({ message: 'User not found' });
+                    }
+
+                    user.google = profile.sub;
+                    user.displayName = user.displayName || profile.name;
+                    user.save(function() {
+                        token = createToken(user);
+                        res.send({ token: token });
+                    });
+                });
+            });
+      } else {
+        // Step 3b. Create a new user account or return an existing one.
+        UserModel.findOne({ google: profile.sub }, function(err, existingUser) {
+          if (existingUser) {
+            return res.send({ token: createToken(existingUser) });
+          }
+
+          var user = new UserModel();
+          user.google = profile.sub;
+          user.displayName = profile.name;
+          user.save(function(err) {
+            var token = createToken(user);
+            res.send({ token: token });
+          });
+        });
+      }
+    });
+  });
+});
+
 
 //Authenticates to get JWT token
 app.post('/authenticate', function(req, res) {
@@ -82,8 +171,9 @@ app.post('/authenticate', function(req, res) {
 
 
 //Creates a new user and a new JWT Token
-app.post('/signin', function(req, res) {
-    UserModel.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
+app.post('/signup', function(req, res) {
+    console.log('Signing up:', req.body.login);
+    UserModel.findOne({login: req.body.login, email: req.body.email}, function(err, user) {
         if (err) {
             res.json({
                 type: false,
@@ -95,11 +185,15 @@ app.post('/signin', function(req, res) {
                     type: false,
                     data: "User already exists!"
                 });
-            } else {
-                var userModel = new User();
-                userModel.email = req.body.email;
-                userModel.password = req.body.password;
-                userModel.save(function(err, user) {
+            } else {//Creates user
+                var newUserModel = new UserModel();
+
+                newUserModel.name = req.body.name;
+                newUserModel.login = req.body.login;
+                newUserModel.email = req.body.email;
+                newUserModel.password = req.body.password;
+
+                newUserModel.save(function(err, user) {
                     user.token = jwt.sign(user, process.env.JWT_SECRET);
                     user.save(function(err, user1) {
                         res.json({

@@ -1,6 +1,10 @@
-/* 
- * Global SCSS file - other files must be imported here 
-*/
+//////////////////////////////////////////////////////////
+//Global SCSS file - other files must be imported here  //
+//////////////////////////////////////////////////////////
 
-@import "page1";
-@import "page2";
+
+@import "_variables";
+@import "_buttons";
+@import "_icons";
+@import "_layout";
+@import "_modal";
