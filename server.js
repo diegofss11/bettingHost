@@ -146,7 +146,7 @@ app.post('/auth/google', function(req, res) {
 //Authenticates to get JWT token
 app.post('/authenticate', function(req, res) {
     UserModel.findOne({login: req.body.login, password: req.body.password}, function(err, user) {
-        console.log(user);
+        console.log(user, 'USER FOUND');
         if (err) {
             res.json({
                 type: false,
@@ -187,7 +187,7 @@ app.post('/signup', function(req, res) {
                 });
             } else {//Creates user
                 var newUserModel = new UserModel();
-
+                console.log(newUserModel, 'model');
                 newUserModel.name = req.body.name;
                 newUserModel.login = req.body.login;
                 newUserModel.email = req.body.email;
@@ -209,10 +209,11 @@ app.post('/signup', function(req, res) {
 });
 
 function _ensureAuthorized(req, res, next) {
-    var bearerToken;
-    var bearerHeader = req.headers["authorization"];
-    if (typeof bearerHeader !== 'undefined') {
-        var bearer = bearerHeader.split(" ");
+    var bearerToken, bearer,
+        bearerHeader = req.headers["authorization"];
+
+    if(typeof bearerHeader !== 'undefined') {
+        bearer = bearerHeader.split(" ");
         bearerToken = bearer[1];
         req.token = bearerToken;
         next();
@@ -222,7 +223,7 @@ function _ensureAuthorized(req, res, next) {
 }
 
 //Ensures autorizations to access any page
-app.get('/me', _ensureAuthorized, function(req, res) {
+app.get('/', _ensureAuthorized, function(req, res) {
     UserModel.findOne({token: req.token}, function(err, user) {
         if (err) {
             res.json({

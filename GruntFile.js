@@ -103,7 +103,7 @@ module.exports = function( grunt ) {
 		        		'bower_components/angular-messages/angular-messages.js',
 		        		'source/dist/js/templates_cache.js',
 		        		'bower_components/satellizer/satellizer.js',
-		        		'bower_components/ngstorage/ngStorange.js',
+		        		'bower_components/ngstorage/ngStorage.js',
 
 		        		//APP FILES
 		        		'source/js/app.js',
@@ -142,10 +142,17 @@ module.exports = function( grunt ) {
      		 },
       		css: {
 		        files: ['source/styles/*.scss'],
-		        tasks: ['compass']
+		        tasks: ['compass'],
+		        options: {
+		        	livereload: true
+		        }
       		}
 		}
   	});
+
+	grunt.event.on('watch', function(action, filepath, target) {
+  		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+	});
 
   	// ===========================================================================
   	// LOAD GRUNT PLUGINS ========================================================
@@ -181,7 +188,7 @@ module.exports = function( grunt ) {
 		dgeni.generate().then(done);
 	});
 
-	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'connect:server', 'open:build', 'watch', 'clean:temp']);
+	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'connect:server', 'open:build', 'clean:temp', 'watch']);
 
 	grunt.registerTask('build',['clean:dist', 'compass', 'html2js', 'injector' ,'jshint', 'ngAnnotate', 'dgeni', 'uglify', 'connect:server', 'open:build', 'watch', 'clean:temp']);
 };

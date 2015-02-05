@@ -9,14 +9,8 @@
 		var _self = this;
 
 		_self.authenticate = function(user, success, error) {
-			$http.post(CONSTANTS.SERVER_BASE_URL + '/auth/login', user)
-				.success(function onAuthenticateSuccess(data){
-					console.log('SUCCESS', data);
-				})
-				.error(function(data, status, headers, config) {
-					console.log('ERROR AUTHENTICATING');
-  				});
-        }
+			return $http.post(CONSTANTS.SERVER_BASE_URL + '/authenticate', user);
+		}
 	};
 
 	LoginService.$inject = ['$http', 'CONSTANTS'];

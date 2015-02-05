@@ -1,3 +1,8 @@
+/* line 5, ../../../styles/_globals.scss */
+.v-center {
+  margin-top: 50%;
+}
+
 /* line 7, ../../../styles/_layout.scss */
 header.header {
   position: absolute;
@@ -6,106 +11,54 @@ header.header {
   height: 50px;
 }
 
-/* line 14, ../../../styles/_layout.scss */
-.v-center {
-  margin-top: 50%;
-}
-
-/* line 18, ../../../styles/_layout.scss */
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  max-width: 550px;
-  min-width: 330px;
-  height: auto;
-  z-index: 2000;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-}
-
-/* line 33, ../../../styles/_layout.scss */
-.sign-up-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-/* line 39, ../../../styles/_layout.scss */
-.demo-modal {
-  border: 1px solid black;
-  background-color: #ccc;
-  padding: 5px;
-}
-
-/* line 46, ../../../styles/_layout.scss */
-.signUp-modal .footer-btn .btn {
-  width: 45%;
-}
-/* line 50, ../../../styles/_layout.scss */
-.signUp-modal .footer-btn .btn-secondary {
-  margin-left: 9%;
-}
-
 /*------------------------------------*\
     $MODAL
 \*------------------------------------*/
-/* line 20, ../../../styles/_modal.scss */
-.template-modal {
-  display: block;
-  overflow-y: hidden;
+/* line 5, ../../../styles/_modal.scss */
+.modal-template {
+  overflow: hidden;
   position: fixed;
+  z-index: 100;
   top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
-  z-index: 1040;
-  display: none;
-  overflow: auto;
-  overflow-y: scroll;
+  bottom: 0;
+}
+
+/* line 16, ../../../styles/_modal.scss */
+.modal-overlay {
+  background-color: black;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  opacity: 0.6;
+}
+
+/* line 26, ../../../styles/_modal.scss */
+.modal-dialog {
+  background-color: white;
+  position: absolute;
+  width: 500px;
+  border: 1px solid black;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 /* line 34, ../../../styles/_modal.scss */
-.modal {
-  position: relative;
-  z-index: 1050;
-  width: auto;
-  margin: 10px;
-}
-
-/* line 41, ../../../styles/_modal.scss */
-.modal-content {
-  position: relative;
-  background-color: #fff;
-  border: 1px solid #999;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  outline: 0;
-  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  background-clip: padding-box;
-}
-
-/* line 53, ../../../styles/_modal.scss */
 .modal-header {
-  min-height: 16.428571429px;
-  padding: 15px;
+  min-height: 18px;
+  padding: 20px;
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* line 59, ../../../styles/_modal.scss */
-.modal-body {
-  position: relative;
+/* line 40, ../../../styles/_modal.scss */
+.modal-transclude {
   padding: 20px;
 }
-
-/* line 64, ../../../styles/_modal.scss */
-.modal-footer {
-  padding: 19px 20px 20px;
-  margin-top: 15px;
-  text-align: right;
-  border-top: 1px solid #e5e5e5;
+/* line 43, ../../../styles/_modal.scss */
+.modal-transclude .modal-footer {
+  padding: 20px;
 }

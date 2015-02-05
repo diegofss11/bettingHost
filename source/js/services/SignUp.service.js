@@ -7,13 +7,7 @@
 	 */
 	function SignUpService($http, CONSTANTS){
 		this.signUp = function(newUser) {
-			$http.post(CONSTANTS.SERVER_BASE_URL + '/signup', newUser)
-				.success(function onSuccessSignUp(data) {
-					alert(data);
-				})
-				.error(function onErrorSignUp(data) {
-					alert(data);
-				});
+			return $http.post(CONSTANTS.SERVER_BASE_URL + '/signup', newUser);
 		}
 	};
 

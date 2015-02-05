@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('tourManager', ['btford.modal', 'tourManager.tpls', 'tourManager.exception', 'ngMessages',
+	angular.module('tourManager', ['btford.modal', 'tourManager.tpls', 'tourManager.exception', 'ngStorage', 'ngMessages',
         'satellizer', 'ui.bootstrap', 'ui.router'])
 
 	//PROVIDERS
@@ -19,9 +19,9 @@
 
         $stateProvider.state('login', {
             url: '/login',
-            controller: 'signUpCtrl',
-            controllerAs: 'vmSignUp',
-            templateUrl: 'partials/SignupForm.tpl.html'
+            controller: 'loginCtrl',
+            controllerAs: 'vmLogin',
+            templateUrl: 'partials/LoginForm.tpl.html'
         });
     })
 	.constant("CONSTANTS", {

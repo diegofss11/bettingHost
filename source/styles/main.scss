@@ -2,9 +2,11 @@
 //Global SCSS file - other files must be imported here  //
 //////////////////////////////////////////////////////////
 
-
+@import "compass/css3";
+@import "_globals";
 @import "_variables";
 @import "_buttons";
 @import "_icons";
 @import "_layout";
 @import "_modal";
+@import "_mixins";

@@ -1,10 +1,13 @@
-<div class="template-modal">
+<div class="modal-template ">
 	<div class="modal-overlay" ng-click="close()"></div>
-	<div class="modal">
+	<div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
 		<header class="modal-header">
-			<button class="btn-text modal-close" ng-click="close()">×</button>
-			<h1 class="modal-title heading-large">{{ title }}</h1>
-		</header>
-		<div class="modal-content" ng-transclude></div>
+			<button type="button" class="close" aria-label="Close" ng-click="close()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title">{{ title }}</h4>
+	    </header>
+		<div class="modal-transclude" ng-transclude></div>
+		</div>
 	</div>
 </div>
