@@ -171,8 +171,8 @@ app.post('/authenticate', function(req, res) {
 
 
 //Creates a new user and a new JWT Token
-app.post('/signup', function(req, res) {
-    console.log('Signing up:', req.body.login);
+app.post('/signin', function(req, res) {
+    console.log('Signing:', req.body.login);
     UserModel.findOne({login: req.body.login, email: req.body.email}, function(err, user) {
         if (err) {
             res.json({

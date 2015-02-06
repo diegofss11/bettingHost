@@ -5,7 +5,7 @@
 	 * [LoginCtrl Handles login application]
 	 * @param {Angular Material Service} $mdBottomSheet
 	 */
-	function LoginCtrl($auth, $localStorage, loginService, signUpDialog){
+	function LoginCtrl($auth, $localStorage, loginService, signInDialog){
 		var _self = this;
 
 		_self.authenticate = function(provider) {
@@ -29,11 +29,11 @@
 			}
 		}
 
-		//Opens dialog for sign up
-		_self.openModal = signUpDialog.activate;
+		//Opens dialog for sign in
+		_self.openModal = signInDialog.activate;
 	};
 
-	LoginCtrl.$inject = ['$auth', '$localStorage', 'loginService', 'signUpDialog'];
+	LoginCtrl.$inject = ['$auth', '$localStorage', 'loginService', 'signInDialog'];
 
 	angular.module('tourManager')
 		.controller('loginCtrl', LoginCtrl);
