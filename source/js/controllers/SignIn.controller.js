@@ -8,12 +8,12 @@
 	function SignInController(signInDialog, signInService){
 		var _self = this;
 
-		_self.signIn = function() {
-			signInService.signIn(_self.newUser)
-				.success(function onSuccessSignIn(data) {
+		_self.register = function() {
+			signInService.register(_self.newUser)
+				.success(function onSuccessRegister(data) {
 					alert(data);
 				})
-				.error(function onErrorSignIn(data) {
+				.error(function onErrorRegister(data) {
 					alert(data);
 				});
 		}

@@ -6,8 +6,8 @@
 	 *
 	 */
 	function SignInService($http, CONSTANTS){
-		this.signIn = function(newUser) {
-			return $http.post(CONSTANTS.SERVER_BASE_URL + '/signin', newUser);
+		this.register = function(newUser) {
+			return $http.post(CONSTANTS.SERVER_BASE_URL + '/register', newUser);
 		}
 	};
 

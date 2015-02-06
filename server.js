@@ -2,6 +2,7 @@
 //Setup //
 //////////
 var express = require('express'),
+    router = express.Router(),
 	app = express(),
     http = require('http'),
     cors = require('cors'),
@@ -11,8 +12,8 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	morgan = require('morgan'),
 	jwt = require('jsonwebtoken'),
-	UserModel = require('./source/js/models/User.model'),
-	db;
+	UserModel = require('./server/User/User.model'),
+    db;
 
 //////////////////////
 //Application setup //
@@ -53,7 +54,6 @@ db.once('open', function databaseOpenCallback() {
 ///////////////
 //OPERATIONS //
 ///////////////
-
 
 //////////
 //LOGIN //
@@ -154,6 +154,9 @@ app.post('/authenticate', function(req, res) {
             });
         } else {
             if (user) {
+                var token = jwt.sign(profile, secret, { expiresInMinutes: 60*5 });
+
+  res.json({ token: token });
                res.json({
                     type: true,
                     data: user,
@@ -162,6 +165,7 @@ app.post('/authenticate', function(req, res) {
             } else {
                 res.json({
                     type: false,
+                    error: 401,
                     data: "Incorrect login/password"
                 });
             }
@@ -169,43 +173,62 @@ app.post('/authenticate', function(req, res) {
     });
 });
 
+function _registerUser(err, req, res, user) {
+    if (err) {
+        console.log(err);
+        res.json({
+            status: 401,
+            msg: "Unauthorized error - Problem finding login in the database",
+
+        });
+    } else if(user) { //user exists already
+        res.status(409).send("Conflict: username already exists");
+
+    } else if (user == undefined) {  //user does not exist already
+        var newUser = new UserModel( {
+            login : req.body.login,
+            password : req.body.password,
+            email : req.body.email,
+            name : req.body.name
+        });
+
+        newUser.save(function(err) {
+            if (err) {
+                console.log(err);
+                res.json({
+                    status: 500,
+                    msg: "Internal Server Error: problem saving " + newUser.login + " to DB",
+
+                });
+            }
+            else {
+                res.json({
+                    status: 200,
+                    msg: newUser.login + " saved successfuly"
+                });
+            }
+        });
+    }
+
+    return res;
+}
+
 
 //Creates a new user and a new JWT Token
-app.post('/signin', function(req, res) {
-    console.log('Signing:', req.body.login);
-    UserModel.findOne({login: req.body.login, email: req.body.email}, function(err, user) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
-            if (user) {
-                res.json({
-                    type: false,
-                    data: "User already exists!"
-                });
-            } else {//Creates user
-                var newUserModel = new UserModel();
-                console.log(newUserModel, 'model');
-                newUserModel.name = req.body.name;
-                newUserModel.login = req.body.login;
-                newUserModel.email = req.body.email;
-                newUserModel.password = req.body.password;
+app.post('/register', function(req, res) {
+    var login = req.body.login || '',
+        password = req.body.password || '',
+        email = req.body.email || '',
+        name = req.body.name || '';
 
-                newUserModel.save(function(err, user) {
-                    user.token = jwt.sign(user, process.env.JWT_SECRET);
-                    user.save(function(err, user1) {
-                        res.json({
-                            type: true,
-                            data: user1,
-                            token: user1.token
-                        });
-                    });
-                })
-            }
-        }
-    });
+    if (login === '' || password === '' || email === '' || name === '') {
+        return res.status(400).send("Bad Request:Registration error");
+
+    } else {
+        UserModel.findOne({ login: req.body.login, email: req.body.email }, function(err, user) {
+            _registerUser(err, req, res, user);
+        });
+    }
 });
 
 function _ensureAuthorized(req, res, next) {
