@@ -16,10 +16,10 @@
 				.error(function onErrorRegister(data) {
 					alert(data);
 				});
-		}
+		};
 
 		_self.close = signInDialog.deactivate;
-	};
+	}
 
 	SignInController.$inject = ['signInDialog', 'signInService'];
 

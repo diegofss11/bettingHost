@@ -136,23 +136,43 @@ module.exports = function( grunt ) {
 			}
 		},
 		watch: {
+			html: {
+				files: ['index.html', 'source/partials/*.tpl.html'],
+				options: {
+					livereload: true
+				}
+			},
 			js: {
-		        files: 'source/js/**/*.js',
-		        tasks: ['uglify']
-     		 },
-      		css: {
-		        files: ['source/styles/*.scss'],
-		        tasks: ['compass'],
-		        options: {
-		        	livereload: true
-		        }
-      		}
-		}
+				files: 'source/js/**/*.js',
+				tasks: ['jshint'],
+				options: {
+					spawn: true,
+					reload: true
+				}
+       		},
+      		sass: {
+      			files: ['source/styles/*.scss'],
+      			tasks: ['compass']
+      		},
+      		livereload: {
+		       	files: ['source/dist/styles/css/main.css'],
+		       	options: {
+					livereload: true,
+					livereloadOnError: false
+				}
+		    }
+    	}
+
   	});
 
+	// ===========================================================================
+  	// EVENTS ====================================================================
+  	// ===========================================================================
 	grunt.event.on('watch', function(action, filepath, target) {
-  		grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+  		grunt.log.writeln('EVENT: ' + target + ': ' + filepath + ' has ' + action);
 	});
+
+
 
   	// ===========================================================================
   	// LOAD GRUNT PLUGINS ========================================================

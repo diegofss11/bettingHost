@@ -15,7 +15,7 @@
     	});
 	})
     .config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise('/login');
 
         $stateProvider.state('login', {
             url: '/login',
@@ -24,8 +24,8 @@
             templateUrl: 'partials/LoginForm.tpl.html'
         });
     })
-	.constant("CONSTANTS", {
-        "SERVER_BASE_URL": "http://localhost:3000"
+	.constant('CONSTANTS', {
+        'SERVER_BASE_URL': 'http://localhost:3000'
     });
 
 })();

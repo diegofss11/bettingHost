@@ -42,7 +42,7 @@ Either clone this repository or fork it on GitHub and clone your fork:
 
 The application server is a NodeJS application that relies upon some 3rd Party npm packages.  You need to install these:
 
-* Install local dependencies (from the project root folder):
+* Install Node.js modules dependencies (from the project root folder):
 
     ```
     cd tourManager
@@ -50,6 +50,16 @@ The application server is a NodeJS application that relies upon some 3rd Party n
     ```
 
   (This will install the dependencies declared in the package.json file)
+
+* Install library dependencies (from the project root folder):
+
+    ```
+    cd tourManager
+    bower install
+    ```
+
+  (This will install the dependencies declared in the package.json file)
+
   
 * To run the CLIENTE project:
    

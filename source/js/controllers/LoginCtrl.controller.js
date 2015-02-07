@@ -27,11 +27,11 @@
 						console.log('Failed to signin');
 	  				});
 			}
-		}
+		};
 
 		//Opens dialog for sign in
 		_self.openModal = signInDialog.activate;
-	};
+	}
 
 	LoginCtrl.$inject = ['$auth', '$localStorage', 'loginService', 'signInDialog'];
 

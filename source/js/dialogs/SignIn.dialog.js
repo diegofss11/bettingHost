@@ -11,7 +11,7 @@
 		    controllerAs: 'vmSignIn',
 		    templateUrl: 'partials/SignInForm.tpl.html'
 		});
-	};
+	}
 
 	SignInDialog.$inject = ['btfModal'];
 

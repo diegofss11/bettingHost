@@ -10,8 +10,8 @@
 
 		_self.authenticate = function(user, success, error) {
 			return $http.post(CONSTANTS.SERVER_BASE_URL + '/authenticate', user);
-		}
-	};
+		};
+	}
 
 	LoginService.$inject = ['$http', 'CONSTANTS'];
 

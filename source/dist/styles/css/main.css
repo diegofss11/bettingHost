@@ -3,10 +3,33 @@
   margin-top: 50%;
 }
 
+@media (max-width: 768px) {
+  /* line 8, ../../../styles/_buttons.scss */
+  .bottom-action-area .btn-full-sm {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (max-width: 768px) {
+  /* line 16, ../../../styles/_buttons.scss */
+  .bottom-action-area .pull-right {
+    float: none !important;
+  }
+}
+@media (max-width: 768px) {
+  /* line 22, ../../../styles/_buttons.scss */
+  .bottom-action-area .separator {
+    display: none;
+  }
+}
+
 /* line 7, ../../../styles/_layout.scss */
 header.header {
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   background-color: green;
   height: 50px;
 }

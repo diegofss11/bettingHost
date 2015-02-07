@@ -1,3 +1,27 @@
 //////////////////
 //BUTTONS STYLE //
 //////////////////
+
+@import "_mixins";
+
+.bottom-action-area {
+	.btn-full-sm {
+		@include breakpoint(sm) {
+			width: 100%;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	.pull-right {
+		@include breakpoint(sm) {
+			float: none !important;
+		}
+	}
+
+	.separator {
+		@include breakpoint(sm) {
+			display: none;
+		}
+	}
+}

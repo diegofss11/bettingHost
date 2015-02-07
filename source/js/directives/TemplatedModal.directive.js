@@ -21,7 +21,7 @@
 				close: '&'
 			}
 		};
-	};
+	}
 
 	angular.module('tourManager')
 		.directive('templateModal', TemplateModalDirective);
