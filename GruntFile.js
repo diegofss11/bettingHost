@@ -5,17 +5,6 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig({
 	  	pkg: grunt.file.readJSON('package.json'),
-
-		connect: { //task
-			server:{ //target
-				options: { //target option
-					port: 8001,
-					hostname: 'localhost', // Change this to '0.0.0.0' to access the server from outside.
-					keepalive: true,
-					open: true
-				}
-			}
-		},
 		karma: {
 	        unit: {
 	            configFile: 'config/karma.conf.js'
@@ -32,15 +21,15 @@ module.exports = function( grunt ) {
 	    compass: {
 			build: {
 				options: {
-					sassDir: 'source/styles',
-					cssDir: 'source/dist/styles/css'
+					sassDir: 'public/styles',
+					cssDir: 'public/dist/styles/css'
 				}
 			}
 		},
 		uglify: {
 		    app: {
 		    	files: {
-		        	'source/dist/js/output.min.js': ['source/dist/js/temp/Annotated.js']
+		        	'public/dist/js/output.min.js': ['public/dist/js/temp/Annotated.js']
 		      	}
 		    }
   		},
@@ -50,24 +39,24 @@ module.exports = function( grunt ) {
 					jshintrc: '.jshintrc'
 				},
 				src: [
-					'source/js/**/*.js',
+					'public/js/**/*.js',
 				  	'test/**/*.js',
 				  	'!node_modules/**/*.js'
 				]
 			}
 		},
 		clean: {
-			dist: 'source/dist',
-			temp: 'source/dist/js/temp'
+			dist: 'public/dist',
+			temp: 'public/dist/js/temp'
 		},
 		html2js: {
 			options: {
 				quoteChar: '\'',
 				rename: function(moduleName) {
-        			return moduleName.replace('../source/partials/', '');
+        			return moduleName.replace('../public/partials/', '');
       			},
       			module: 'tourManager.tpls',
-      			base: 'source',
+      			base: 'public',
       			indentString: '    ',
       			singleModule: true,
 				useStrict: true,
@@ -83,38 +72,38 @@ module.exports = function( grunt ) {
 				}
 			},
 			main: {
-				src: ['source/partials/*.tpl.html'],
-      			dest: 'source/dist/js/templates_cache.js'
+				src: ['public/partials/*.tpl.html'],
+      			dest: 'public/dist/js/templates_cache.js'
     		}
 		},
 		injector: {
 			options: {},
 		    app: {
 		      	files: {
-		      		'index.html' : [
+		      		'public/index.html' : [
 		        		//JS
-		        		'bower_components/jquery/dist/jquery.js',
-		        		'bower_components/angular/angular.js',
-		        		'bower_components/angular-animate/angular-animate.js',
-		        		'bower_components/angular-aria/angular-aria.js',
-		        		'bower_components/angular-ui-router/release/angular-ui-router.js',
-		        		'bower_components/angular-modal/modal.js',
-		        		'bower_components/angular-bootstrap/ui-bootstrap.js',
-		        		'bower_components/angular-messages/angular-messages.js',
-		        		'source/dist/js/templates_cache.js',
-		        		'bower_components/satellizer/satellizer.js',
-		        		'bower_components/ngstorage/ngStorage.js',
+		        		'/vendor/jquery/dist/jquery.js',
+		        		'/vendor/angular/angular.js',
+		        		'/vendor/angular-animate/angular-animate.js',
+		        		'/vendor/angular-aria/angular-aria.js',
+		        		'/vendor/angular-ui-router/release/angular-ui-router.js',
+		        		'/vendor/angular-modal/modal.js',
+		        		'/vendor/angular-bootstrap/ui-bootstrap.js',
+		        		'/vendor/angular-messages/angular-messages.js',
+		        		'/dist/js/templates_cache.js',
+		        		'/vendor/satellizer/satellizer.js',
+		        		'/vendor/ngstorage/ngStorage.js',
 
 		        		//APP FILES
-		        		'source/js/app.js',
-		        		'source/js/**/*.controller.js',
-		        		'source/js/**/*.service.js',
-		        		'source/js/**/*.directive.js',
-		        		'source/js/**/*.decorator.js',
-		        		'source/js/**/*.dialog.js',
+		        		'/js/app.js',
+		        		'/js/**/*.controller.js',
+		        		'/js/**/*.service.js',
+		        		'/js/**/*.directive.js',
+		        		'/js/**/*.decorator.js',
+		        		'/js/**/*.dialog.js',
 
 						//CSS
-		          		'source/dist/styles/css/main.css'
+		          		'/dist/styles/css/main.css'
 		        	]
 		        }
 		    },
@@ -125,25 +114,19 @@ module.exports = function( grunt ) {
 	        },
 	        app: {
 	            files: {
-	            	'source/dist/js/temp/Annotated.js' : ['source/js/**/*.js']
+	            	'public/dist/js/temp/Annotated.js' : ['public/js/**/*.js']
 	            }
 	        }
     	},
-		open: {
-			build: {
-				path: 'http://127.0.0.1:8001',
-      			app: 'Google Chrome'
-			}
-		},
 		watch: {
 			html: {
-				files: ['index.html', 'source/partials/*.tpl.html'],
+				files: ['public/index.html', 'public/partials/*.tpl.html'],
 				options: {
 					livereload: true
 				}
 			},
 			js: {
-				files: 'source/js/**/*.js',
+				files: 'public/js/**/*.js',
 				tasks: ['jshint'],
 				options: {
 					spawn: true,
@@ -151,11 +134,11 @@ module.exports = function( grunt ) {
 				}
        		},
       		sass: {
-      			files: ['source/styles/*.scss'],
+      			files: ['public/styles/*.scss'],
       			tasks: ['compass']
       		},
       		livereload: {
-		       	files: ['source/dist/styles/css/main.css'],
+		       	files: ['public/dist/styles/css/main.css'],
 		       	options: {
 					livereload: true,
 					livereloadOnError: false
@@ -208,8 +191,8 @@ module.exports = function( grunt ) {
 		dgeni.generate().then(done);
 	});
 
-	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'connect:server', 'open:build', 'clean:temp', 'watch']);
+	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'clean:temp', 'watch']);
 
-	grunt.registerTask('build',['clean:dist', 'compass', 'html2js', 'injector' ,'jshint', 'ngAnnotate', 'dgeni', 'uglify', 'connect:server', 'open:build', 'watch', 'clean:temp']);
+	grunt.registerTask('build',['clean:dist', 'compass', 'html2js', 'injector' ,'jshint', 'ngAnnotate', 'dgeni', 'uglify', 'watch', 'clean:temp']);
 };
 

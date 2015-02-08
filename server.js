@@ -5,14 +5,13 @@ var express = require('express'),
     router = express.Router(),
 	app = express(),
     http = require('http'),
-    cors = require('cors'),
 	constants = require('./config/constants'),
 	mongoose = require('mongoose'),
 	Schema  = mongoose.Schema,
 	bodyParser = require('body-parser'),
 	morgan = require('morgan'),
 	jwt = require('jsonwebtoken'),
-	UserModel = require('./server/User/User.model'),
+	UserModel = require('./public/server/User/User.model'),
     db;
 
 //////////////////////
@@ -21,21 +20,12 @@ var express = require('express'),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
-app.use(cors());
-app.set('port', 3000);
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*'); //allowed for all domains
-    res.setHeader('Access-Control-Allow-Methods', '*'); //operations allowed for this domain
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization'); //headers allowed
-    next();
-});
 
-///////////////////////////////////////////
-//Listen (start app with node server.js) //
-///////////////////////////////////////////
-http.createServer(app).listen(app.get('port'), function(){
-    console.log('LISTENING on port: ' + app.get('port'));
-});
+app.set('port', 3000);
+
+app.use(express.static(__dirname + '/public'));
+
+app.listen(app.get('port'));
 
 
 //////////////////////////
@@ -244,20 +234,9 @@ function _ensureAuthorized(req, res, next) {
         res.send(403);
     }
 }
-
+/*
 //Ensures autorizations to access any page
-app.get('/', _ensureAuthorized, function(req, res) {
-    UserModel.findOne({token: req.token}, function(err, user) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
-            res.json({
-                type: true,
-                data: user
-            });
-        }
-    });
-});
+app.get('/', function(req,res) {
+  res.sendFile(__dirname+'/index.html');
+  
+});*/
