@@ -38,4 +38,3 @@
 	angular.module('tourManager')
 		.controller('loginCtrl', LoginCtrl);
 })();
-

@@ -1,5 +1,5 @@
 /*------------------------------------*\
-    $MODAL
+    #MODAL
 \*------------------------------------*/
 
 .modal-template {
@@ -29,18 +29,39 @@
 		width: 500px;
 		border: 1px solid black;
 		@include border-radius(10px);
+		background-color: #f5f5f5;
 	}
 
 		.modal-header {
 			min-height: 18px;
 			padding: 20px;
-			border-bottom: 1px solid #e5e5e5;
+			background-color: #90a4ae;
+			border-bottom: 1px solid #d5d5d5;
+			font-weight: 700px;
 		}
 
 		.modal-transclude {
 			padding: 20px;
 
 			.modal-footer {
-				padding: 20px;
+				padding: 15px 0;
 			}
 		}
+
+	.modal-sign-in {
+		.modal-footer {
+			.unit.half {
+				width: 48%;
+
+				.btn {
+					margin-left: 0 !important;
+				}
+
+				.btn-primary {
+					@include breakpoint(sm) {
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}

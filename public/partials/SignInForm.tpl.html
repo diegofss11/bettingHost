@@ -1,44 +1,44 @@
-<div template-modal="Sign in" close="vmSignIn.close()">
+<div template-modal="Sign in" class="modal-sign-in" close="vmSignIn.close()">
 	<form novalidated name="signInForm" ng-submit="vmSignIn.register()">
 		<div class="form-group">
   			<label for="name">Name</label>
   			<input required type="text" name="name" class="form-control" ng-model="vmSignIn.newUser.name">
 			<div ng-if="signInForm.name.$dirty" ng-messages="signInForm.name.$error">
-				<div ng-message="required" class="text-danger">This is required.</div>
+				<div ng-message="required" class="text-error">This is required.</div>
 			</div>
   		</div>
   		<div class="form-group">
   			<label for="login">Login</label>
   			<input required type="text" name="login" class="form-control" ng-model="vmSignIn.newUser.login">
 			<div ng-if="signInForm.login.$dirty" ng-messages="signInForm.login.$error">
-				<div ng-message="required" class="text-danger">This is required.</div>
+				<div ng-message="required" class="text-error">This is required.</div>
 			</div>
   		</div>
 		<div class="form-group">
   			<label for="password">Email</label>
   			<input required type="email" class="form-control" name="email" ng-model="vmSignIn.newUser.email">
   			<div ng-if="signInForm.email.$dirty"  ng-messages="signInForm.email.$error">
-				<div ng-message="required" class="text-danger">This is required.</div>
+				<div ng-message="required" class="text-error">This is required.</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
 	  		<input required type="password" class="form-control" name="password" ng-model="vmSignIn.newUser.password">
 	  		<div ng-if="signInForm.password.$dirty"  ng-messages="signInForm.password.$error">
-				<div ng-message="required" class="text-danger">This is required.</div>
+				<div ng-message="required" class="text-error">This is required.</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="password">Confirm Password</label>
 	  		<input required type="password" class="form-control" name="confirmPassword" ng-model="vmSignIn.newUser.confirmPassword" compare-to="vmSignIn.newUser.password">
 	  		<div ng-if="signInForm.confirmPassword.$dirty"  ng-messages="signInForm.confirmPassword.$error">
-				<div ng-message="required" class="text-danger">This is required.</div>
-				<div ng-message="compareTo" class="text-danger">Must match the previous entry.</div>
+				<div ng-message="required" class="text-error">This is required.</div>
+				<div ng-message="compareTo" class="text-error">Must match the previous entry.</div>
 			</div>
 		</div>
-		<footer class="modal-footer">
-			<input ng-class="{disabled : signInForm.$invalid}" class="btn btn-full btn-primary" type="submit" value="Sign up">
-			<input type="button" class="btn btn-full btn-default" ng-click="vmSignIn.close()" value="Close">
+		<footer class="modal-footer sign-in grid">
+			<button ng-class="{disabled : signInForm.$invalid}" class="btn btn-primary unit half pull-left" type="submit">Sign Up</button>
+			<button type="button" class="btn btn-default unit half pull-right" ng-click="vmSignIn.close()">Close</button>
 		</footer>
 	</form>
 </div>

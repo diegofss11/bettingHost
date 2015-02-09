@@ -1,14 +1,20 @@
-///////////
-//LAYOUT //
-///////////
+/*------------------------------------*\
+    #LAYOUT
+\*------------------------------------*/
 
 @import "_variables";
+@import "_mixins";
 
 header.header {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-	background-color: green;
-	height: 50px;
+	background-color: #90a4ae;
+	color: white;
+	height: $header-height;
+}
+
+.main-content {
+	margin-top: $header-height;
 }

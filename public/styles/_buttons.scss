@@ -1,12 +1,54 @@
-//////////////////
-//BUTTONS STYLE //
-//////////////////
-
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
 @import "_mixins";
+
+.btn-primary,
+.btn-secondary,
+.btn-default {
+	@include border-radius(2px);
+
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	outline: none;
+	text-transform: uppercase;
+
+	&:hover {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+	}
+
+	&.disabled {
+		background-color: #e6e6e6;
+	}
+}
+
+.btn-link {
+	outline: none;
+	color: #00bcd4;
+	text-transform: uppercase;
+	font-weight: 500;
+
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: #defbff;
+	}
+}
+
+.btn-primary {
+	background-color: #00bcd4;
+	border: 0;
+	letter-spacing: 0;
+
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: #00aac0;
+	}
+}
 
 .bottom-action-area {
 	.btn-full-sm {
-		@include breakpoint(sm) {
+		@include breakpoint(md) {
 			width: 100%;
 			padding-left: 0;
 			padding-right: 0;
@@ -14,13 +56,13 @@
 	}
 
 	.pull-right {
-		@include breakpoint(sm) {
+		@include breakpoint(md) {
 			float: none !important;
 		}
 	}
 
 	.separator {
-		@include breakpoint(sm) {
+		@include breakpoint(md) {
 			display: none;
 		}
 	}

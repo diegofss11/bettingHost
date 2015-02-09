@@ -1,41 +1,132 @@
+/*------------------------------------*\
+    #MAIN CSS - OTHER FILES MUST BE IMPORTED HERE
+\*------------------------------------*/
+/*------------------------------------*\
+    #GLOBALS
+\*------------------------------------*/
 /* line 5, ../../../styles/_globals.scss */
+body {
+  background-color: #f5f5f5;
+}
+
+/* line 9, ../../../styles/_globals.scss */
 .v-center {
   margin-top: 50%;
 }
 
-@media (max-width: 768px) {
-  /* line 8, ../../../styles/_buttons.scss */
+/* line 13, ../../../styles/_globals.scss */
+.text-error {
+  color: #F44336;
+  font-weight: 600px;
+}
+
+/*------------------------------------*\
+    #VARIABLES
+\*------------------------------------*/
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+/*------------------------------------*\
+    #MIXINS
+\*------------------------------------*/
+/* line 6, ../../../styles/_buttons.scss */
+.btn-primary,
+.btn-secondary,
+.btn-default {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  outline: none;
+  text-transform: uppercase;
+}
+/* line 15, ../../../styles/_buttons.scss */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-default:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+/* line 19, ../../../styles/_buttons.scss */
+.btn-primary.disabled,
+.btn-secondary.disabled,
+.btn-default.disabled {
+  background-color: #e6e6e6;
+}
+
+/* line 24, ../../../styles/_buttons.scss */
+.btn-link {
+  outline: none;
+  color: #00bcd4;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+/* line 30, ../../../styles/_buttons.scss */
+.btn-link:hover, .btn-link:focus, .btn-link:active {
+  background-color: #defbff;
+}
+
+/* line 37, ../../../styles/_buttons.scss */
+.btn-primary {
+  background-color: #00bcd4;
+  border: 0;
+  letter-spacing: 0;
+}
+/* line 42, ../../../styles/_buttons.scss */
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background-color: #00aac0;
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  /* line 50, ../../../styles/_buttons.scss */
   .bottom-action-area .btn-full-sm {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
   }
 }
-@media (max-width: 768px) {
-  /* line 16, ../../../styles/_buttons.scss */
+@media (min-width: 769px) and (max-width: 992px) {
+  /* line 58, ../../../styles/_buttons.scss */
   .bottom-action-area .pull-right {
     float: none !important;
   }
 }
-@media (max-width: 768px) {
-  /* line 22, ../../../styles/_buttons.scss */
+@media (min-width: 769px) and (max-width: 992px) {
+  /* line 64, ../../../styles/_buttons.scss */
   .bottom-action-area .separator {
     display: none;
   }
 }
 
-/* line 7, ../../../styles/_layout.scss */
+/*------------------------------------*\
+    #ICONS
+\*------------------------------------*/
+/*------------------------------------*\
+    #LAYOUT
+\*------------------------------------*/
+/*------------------------------------*\
+    #VARIABLES
+\*------------------------------------*/
+/*------------------------------------*\
+    #MIXINS
+\*------------------------------------*/
+/* line 8, ../../../styles/_layout.scss */
 header.header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  background-color: green;
+  background-color: #90a4ae;
+  color: white;
   height: 50px;
 }
 
+/* line 18, ../../../styles/_layout.scss */
+.main-content {
+  margin-top: 50px;
+}
+
 /*------------------------------------*\
-    $MODAL
+    #MODAL
 \*------------------------------------*/
 /* line 5, ../../../styles/_modal.scss */
 .modal-template {
@@ -65,25 +156,53 @@ header.header {
   position: absolute;
   width: 500px;
   border: 1px solid black;
-  -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  -webkit-border-radius: 10px;
   border-radius: 10px;
+  background-color: #f5f5f5;
 }
 
-/* line 34, ../../../styles/_modal.scss */
+/* line 35, ../../../styles/_modal.scss */
 .modal-header {
   min-height: 18px;
   padding: 20px;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: #90a4ae;
+  border-bottom: 1px solid #d5d5d5;
+  font-weight: 700px;
 }
 
-/* line 40, ../../../styles/_modal.scss */
+/* line 43, ../../../styles/_modal.scss */
 .modal-transclude {
   padding: 20px;
 }
-/* line 43, ../../../styles/_modal.scss */
+/* line 46, ../../../styles/_modal.scss */
 .modal-transclude .modal-footer {
-  padding: 20px;
+  padding: 15px 0;
 }
+
+/* line 53, ../../../styles/_modal.scss */
+.modal-sign-in .modal-footer .unit.half {
+  width: 48%;
+}
+/* line 56, ../../../styles/_modal.scss */
+.modal-sign-in .modal-footer .unit.half .btn {
+  margin-left: 0 !important;
+}
+@media (max-width: 768px) {
+  /* line 60, ../../../styles/_modal.scss */
+  .modal-sign-in .modal-footer .unit.half .btn-primary {
+    margin-bottom: 10px;
+  }
+}
+
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+/* line 6, ../../../styles/_forms.scss */
+.form-control:focus {
+  border: 1px solid #00bcd4;
+}
+
+/*------------------------------------*\
+    #MIXINS
+\*------------------------------------*/

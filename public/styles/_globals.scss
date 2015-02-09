@@ -1,7 +1,16 @@
-//////////////////
-//Globals classes //
-//////////////////
+/*------------------------------------*\
+    #GLOBALS
+\*------------------------------------*/
+
+body {
+	background-color: #f5f5f5;
+}
 
 .v-center {
 	margin-top: 50%;
+}
+
+.text-error {
+	color: #F44336;
+	font-weight: 600px;
 }
