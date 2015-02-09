@@ -2,7 +2,7 @@
     #MIXINS
 \*------------------------------------*/
 
-
+//Mixin for managing breakpoint based on parameter
 @mixin breakpoint($class) {
 	@if $class == xs {
 		@media (max-width: $screen-sm - 1) {
