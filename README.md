@@ -60,17 +60,14 @@ The application server is a NodeJS application that relies upon some 3rd Party n
 
   (This will install the dependencies declared in the package.json file)
 
-  
-* To run the CLIENTE project:
-   
+
+* To build the CLIENTE project:
+
     ```
     cd tourManager
     grunt
     ```
-
-The application is hosted in (http://localhost:8001/)
-
-* To run the node REST API server
+* To run the node application server
 
     ```
     cd tourManager
@@ -82,4 +79,5 @@ The application is hosted in (http://localhost:8001/)
     cd tourManager
     node-debug app.js
     ```
+* The application is hosted in (http://localhost:3000/)
 
