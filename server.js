@@ -51,15 +51,16 @@ db.once('open', function databaseOpenCallback() {
 
 function _registerUser(err, req, res, user) {
     if (err) {
-        console.log(err);
         res.json({
             status: 401,
-            msg: "Unauthorized error - Problem finding login in the database",
+            msg: "Unauthorized error: Problem finding login in the database",
 
         });
     } else if(user) { //user exists already
-        res.status(409).send("Conflict: username already exists");
-
+        res.json({
+            status: 409,
+            message: 'Conflict ocurred: username already exists'
+        });
     } else if (user == undefined) {  //user does not exist already
         var newUser = new UserModel( {
             login : req.body.login,
@@ -73,20 +74,16 @@ function _registerUser(err, req, res, user) {
                 console.log(err);
                 res.json({
                     status: 500,
-                    msg: "Internal Server Error: problem saving " + newUser.login + " to DB",
-
+                    message: "Internal Server Error: problem saving " + newUser.login + " to DB",
                 });
             }
             else {
                 res.json({
                     status: 200,
-                    msg: newUser.login + " saved successfuly"
                 });
             }
         });
     }
-
-    return res;
 }
 
 
@@ -98,8 +95,10 @@ app.post('/register', function(req, res) {
         name = req.body.name || '';
 
     if (login === '' || password === '' || email === '' || name === '') {
-        return res.status(400).send("Bad Request:Registration error");
-
+        res.json({
+            status: 400,
+            message: 'Registration error'
+        });
     } else {
         UserModel.findOne({ login: req.body.login, email: req.body.email }, function(err, user) {
             _registerUser(err, req, res, user);
@@ -123,8 +122,7 @@ app.post('/authenticate', function(req, res) {
                 res.json({
                     status: 200,
                     token: token,
-                    data: user,
-                    message: 'Authentication succeed'
+                    data: user
                 });
             } else {
                 res.json({

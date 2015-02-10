@@ -5,7 +5,7 @@
 	 * [LoginCtrl Handles login application]
 	 * @param {Angular Material Service} $mdBottomSheet
 	 */
-	function LoginCtrl($auth, $localStorage, Constants, loginService, signInDialog){
+	function LoginCtrl($auth, $localStorage, Constants, loginService, registerUserDialog){
 		var _self = this;
 
 		_self.authenticate = function(provider) {
@@ -18,22 +18,21 @@
 						if(result.status !== Constants.SUCCESS) {
 							alert(result.message);
 						} else {
-							debugger;
 							$localStorage.token = result.token;
 							window.location = '/index';
 						}
 					})
 					.error(function(result, status, headers, config) {
-						console.log('Failed to signin');
+						console.log(result.message);
 	  				});
 			}
 		};
 
-		//Opens dialog for sign in
-		_self.openModal = signInDialog.activate;
+		//Opens dialog for register
+		_self.openModal = registerUserDialog.activate;
 	}
 
-	LoginCtrl.$inject = ['$auth', '$localStorage', 'Constants', 'loginService', 'signInDialog'];
+	LoginCtrl.$inject = ['$auth', '$localStorage', 'Constants', 'loginService', 'registerUserDialog'];
 
 	angular.module('tourManager')
 		.controller('loginCtrl', LoginCtrl);

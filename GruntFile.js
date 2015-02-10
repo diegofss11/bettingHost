@@ -80,30 +80,30 @@ module.exports = function( grunt ) {
 			options: {},
 		    app: {
 		      	files: {
-		      		'public/index.html' : [
+		      		'./public/index.html' : [
 		        		//JS
-		        		'/vendor/jquery/dist/jquery.js',
-		        		'/vendor/angular/angular.js',
-		        		'/vendor/angular-animate/angular-animate.js',
-		        		'/vendor/angular-aria/angular-aria.js',
-		        		'/vendor/angular-ui-router/release/angular-ui-router.js',
-		        		'/vendor/angular-modal/modal.js',
-		        		'/vendor/angular-bootstrap/ui-bootstrap.js',
-		        		'/vendor/angular-messages/angular-messages.js',
-		        		'/dist/js/templates_cache.js',
-		        		'/vendor/satellizer/satellizer.js',
-		        		'/vendor/ngstorage/ngStorage.js',
+		        		'./vendor/jquery/dist/jquery.js',
+		        		'./vendor/angular/angular.js',
+		        		'./vendor/angular-animate/angular-animate.js',
+		        		'./vendor/angular-aria/angular-aria.js',
+		        		'./vendor/angular-ui-router/release/angular-ui-router.js',
+		        		'./vendor/angular-modal/modal.js',
+		        		'./vendor/angular-bootstrap/ui-bootstrap.js',
+		        		'./vendor/angular-messages/angular-messages.js',
+		        		'./dist/js/templates_cache.js',
+		        		'./vendor/satellizer/satellizer.js',
+		        		'./vendor/ngstorage/ngStorage.js',
 
 		        		//APP FILES
-		        		'/js/app.js',
-		        		'/js/**/*.controller.js',
-		        		'/js/**/*.service.js',
-		        		'/js/**/*.directive.js',
-		        		'/js/**/*.decorator.js',
-		        		'/js/**/*.dialog.js',
+		        		'./js/app.js',
+		        		'./js/**/*.controller.js',
+		        		'./js/**/*.service.js',
+		        		'./js/**/*.directive.js',
+		        		'./js/**/*.decorator.js',
+		        		'./js/**/*.dialog.js',
 
 						//CSS
-		          		'/dist/styles/css/main.css'
+		          		'./dist/styles/css/main.css'
 		        	]
 		        }
 		    },
