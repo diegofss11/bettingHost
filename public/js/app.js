@@ -24,8 +24,14 @@
             templateUrl: 'partials/LoginForm.tpl.html'
         });
     })
-	.constant('CONSTANTS', {
-        'SERVER_BASE_URL': 'http://localhost:3000'
+	.constant('Constants', {
+        'SERVER_BASE_URL': 'http://localhost:3000',
+        'SUCCESS': 200,
+        'NO_RESPONSE': 204,
+        'BAD_REQUEST': 400,
+        'UNAUTHORIZED': 401,
+        'FORBIDDEN': 403,
+        'NOT_FOUND': 404
     });
 
 })();

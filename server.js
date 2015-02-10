@@ -1,6 +1,3 @@
-//////////
-//Setup //
-//////////
 var express = require('express'),
     router = express.Router(),
 	app = express(),
@@ -14,9 +11,10 @@ var express = require('express'),
 	UserModel = require('./public/server/User/User.model'),
     db;
 
-//////////////////////
-//Application setup //
-//////////////////////
+/**
+* Application setup
+*
+*/
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
@@ -27,10 +25,15 @@ app.use(express.static(__dirname + '/public'));
 
 app.listen(app.get('port'));
 
+//protecting public route //TO DO(@Diego)
 
-//////////////////////////
-//Connecting Database	//
-//////////////////////////
+
+
+
+/**
+* Database setup
+*
+*/
 mongoose.connect(constants.MONGO_DB_CONNECTION_URL);
 mongoose.set('debug', true);
 
@@ -41,29 +44,97 @@ db.once('open', function databaseOpenCallback() {
 });
 
 
-///////////////
-//OPERATIONS //
-///////////////
+/**
+* Server API
+*
+*/
 
-//////////
-//LOGIN //
-//////////
-app.post('/auth/login', function(req, res) {
-  UserModel.findOne({ login: req.body.login }, '+password', function(err, user) {
-    if (!user) {
-      return res.status(401).send({ message: 'Wrong email and/or password' });
+function _registerUser(err, req, res, user) {
+    if (err) {
+        console.log(err);
+        res.json({
+            status: 401,
+            msg: "Unauthorized error - Problem finding login in the database",
+
+        });
+    } else if(user) { //user exists already
+        res.status(409).send("Conflict: username already exists");
+
+    } else if (user == undefined) {  //user does not exist already
+        var newUser = new UserModel( {
+            login : req.body.login,
+            password : req.body.password,
+            email : req.body.email,
+            name : req.body.name
+        });
+
+        newUser.save(function(err) {
+            if (err) {
+                console.log(err);
+                res.json({
+                    status: 500,
+                    msg: "Internal Server Error: problem saving " + newUser.login + " to DB",
+
+                });
+            }
+            else {
+                res.json({
+                    status: 200,
+                    msg: newUser.login + " saved successfuly"
+                });
+            }
+        });
     }
 
-    user.comparePassword(req.body.password, function(err, isMatch) {
-      if (!isMatch) {
-        return res.status(401).send({ message: 'Wrong email and/or password' });
-      }
+    return res;
+}
 
-      res.send({ token: createToken(user) });
-    });
-  });
+
+//Creates a new user and a new JWT Token
+app.post('/register', function(req, res) {
+    var login = req.body.login || '',
+        password = req.body.password || '',
+        email = req.body.email || '',
+        name = req.body.name || '';
+
+    if (login === '' || password === '' || email === '' || name === '') {
+        return res.status(400).send("Bad Request:Registration error");
+
+    } else {
+        UserModel.findOne({ login: req.body.login, email: req.body.email }, function(err, user) {
+            _registerUser(err, req, res, user);
+        });
+    }
 });
 
+//Authenticates user
+app.post('/authenticate', function(req, res) {
+    UserModel.findOne({login: req.body.login, password: req.body.password}, function(err, user) {
+        console.log(user, 'USER FOUND');
+        if (err) {
+            res.json({
+                status: 400,
+                message: 'Error ocurred: ' + err
+            });
+        } else {
+            if (user) {
+                var token = jwt.sign(user, 'secret', { expiresInMinutes: 60*5 });
+
+                res.json({
+                    status: 200,
+                    token: token,
+                    data: user,
+                    message: 'Authentication succeed'
+                });
+            } else {
+                res.json({
+                    error: 401,
+                    message: 'Incorrect login/password'
+                });
+            }
+        }
+    });
+});
 
 //Google Login
 app.post('/auth/google', function(req, res) {
@@ -130,95 +201,6 @@ app.post('/auth/google', function(req, res) {
       }
     });
   });
-});
-
-
-//Authenticates to get JWT token
-app.post('/authenticate', function(req, res) {
-    UserModel.findOne({login: req.body.login, password: req.body.password}, function(err, user) {
-        console.log(user, 'USER FOUND');
-        if (err) {
-            res.json({
-                type: false,
-                data: "ERROR OCURRED: " + err
-            });
-        } else {
-            if (user) {
-                var token = jwt.sign(profile, secret, { expiresInMinutes: 60*5 });
-
-  res.json({ token: token });
-               res.json({
-                    type: true,
-                    data: user,
-                    token: user.token
-                });
-            } else {
-                res.json({
-                    type: false,
-                    error: 401,
-                    data: "Incorrect login/password"
-                });
-            }
-        }
-    });
-});
-
-function _registerUser(err, req, res, user) {
-    if (err) {
-        console.log(err);
-        res.json({
-            status: 401,
-            msg: "Unauthorized error - Problem finding login in the database",
-
-        });
-    } else if(user) { //user exists already
-        res.status(409).send("Conflict: username already exists");
-
-    } else if (user == undefined) {  //user does not exist already
-        var newUser = new UserModel( {
-            login : req.body.login,
-            password : req.body.password,
-            email : req.body.email,
-            name : req.body.name
-        });
-
-        newUser.save(function(err) {
-            if (err) {
-                console.log(err);
-                res.json({
-                    status: 500,
-                    msg: "Internal Server Error: problem saving " + newUser.login + " to DB",
-
-                });
-            }
-            else {
-                res.json({
-                    status: 200,
-                    msg: newUser.login + " saved successfuly"
-                });
-            }
-        });
-    }
-
-    return res;
-}
-
-
-//Creates a new user and a new JWT Token
-app.post('/register', function(req, res) {
-    var login = req.body.login || '',
-        password = req.body.password || '',
-        email = req.body.email || '',
-        name = req.body.name || '';
-
-    if (login === '' || password === '' || email === '' || name === '') {
-        return res.status(400).send("Bad Request:Registration error");
-
-    } else {
-        UserModel.findOne({ login: req.body.login, email: req.body.email }, function(err, user) {
-            _registerUser(err, req, res, user);
-        });
-    }
 });
 
 function _ensureAuthorized(req, res, next) {
