@@ -5,7 +5,7 @@
 	 * [RegisterUserService Handles the login creation for the application]
 	 *
 	 */
-	function RegisterUserService($http, Constants){
+	function RegisterUserService($http, Constants) {
 		this.register = function(newUser) {
 			return $http.post(Constants.SERVER_BASE_URL + '/register', newUser);
 		};

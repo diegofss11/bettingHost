@@ -5,7 +5,7 @@
 	 * [RegisterUser Handles sign in for the application]
 	 *
 	 */
-	function RegisterUserController(Constants, registerUserDialog, signInService){
+	function RegisterUserController(Constants, registerUserDialog, signInService) {
 		var _self = this;
 
 		_self.register = function() {

@@ -1,45 +1,61 @@
-var User = {
- 
-  getAll: function(req, res) {
-    var allusers = data; // Spoof a DB call
-    res.json(allusers);
-  },
- 
-  getOne: function(req, res) {
-    var id = req.params.id;
-    var user = data[0]; // Spoof a DB call
-    res.json(user);
-  },
- 
-  create: function(req, res) {
-    var newuser = req.body;
-    data.push(newuser); // Spoof a DB call
-    res.json(newuser);
-  },
- 
-  update: function(req, res) {
-    var updateuser = req.body;
-    var id = req.params.id;
-    data[id] = updateuser // Spoof a DB call
-    res.json(updateuser);
-  },
- 
-  delete: function(req, res) {
-    var id = req.params.id;
-    data.splice(id, 1) // Spoof a DB call
-    res.json(true);
-  }
-};
- 
-var data = [{
-  name: 'user 1',
-  id: '1'
-}, {
-  name: 'user 2',
-  id: '2'
-}, {
-  name: 'user 3',
-  id: '3'
-}];
- 
-module.exports = User;
+var UserAPI = {
+    function _registerUser(err, req, res, user) {
+        if (err) {
+            res.json({
+                status: 401,
+                msg: "Unauthorized error: Problem finding login in the database",
+
+            });
+        } else if(user) { //user exists already
+            res.json({
+                status: 409,
+                message: 'Conflict ocurred: username already exists'
+            });
+        } else if (user == undefined) {  //user does not exist already
+            var newUser = new UserModel( {
+                login : req.body.login,
+                password : req.body.password,
+                email : req.body.email,
+                name : req.body.name
+            });
+
+            newUser.save(function(err) {
+                if (err) {
+                    console.log(err);
+                    res.json({
+                        status: 500,
+                        message: "Internal Server Error: problem saving " + newUser.login + " to DB",
+                    });
+                }
+                else {
+                    res.json({
+                        status: 200,
+                    });
+                }
+            });
+        }
+    }
+
+
+    //Creates a new user and a new JWT Token
+    app.post('/register', function(req, res) {
+        var login = req.body.login || '',
+            password = req.body.password || '',
+            email = req.body.email || '',
+            name = req.body.name || '';
+
+        if (login === '' || password === '' || email === '' || name === '') {
+            res.json({
+                status: 400,
+                message: 'Registration error'
+            });
+        } else {
+            UserModel.findOne({ login: req.body.login, email: req.body.email }, function(err, user) {
+                _registerUser(err, req, res, user);
+            });
+        }
+    });
+}
+
+
+module.exports = UserAPI;

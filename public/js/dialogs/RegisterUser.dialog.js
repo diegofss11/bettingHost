@@ -9,13 +9,13 @@
 		return btfModal({
 			controller: 'registerUserCtrl',
 		    controllerAs: 'vmRegisterUser',
-		    templateUrl: 'partials/RegisterUser.tpl.html'
+		    templateUrl: 'partials/RegisterUserDialog.tpl.html'
 		});
 	}
 
 	RegisterUserDialog.$inject = ['btfModal'];
 
 	angular.module('tourManager')
-		.factory('RegisterUserDialog', RegisterUserDialog);
+		.factory('registerUserDialog', RegisterUserDialog);
 })();
 

@@ -18,17 +18,9 @@ var express = require('express'),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
-
 app.set('port', 3000);
-
 app.use(express.static(__dirname + '/public'));
-
 app.listen(app.get('port'));
-
-//protecting public route //TO DO(@Diego)
-
-
-
 
 /**
 * Database setup

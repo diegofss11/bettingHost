@@ -30,6 +30,20 @@
 	&:hover,
 	&:focus,
 	&:active {
+		background-color: rgba(158,158,158,0.2);
+		text-decoration: none;
+	}
+}
+
+.btn-link-primary {
+	outline: none;
+	color: #00bcd4;
+	text-transform: uppercase;
+	font-weight: 500;
+
+	&:hover,
+	&:focus,
+	&:active {
 		background-color: #defbff;
 	}
 }
@@ -66,4 +80,9 @@
 			display: none;
 		}
 	}
+}
+
+.btn-menu {
+	position: relative;
+	top: 5px;
 }

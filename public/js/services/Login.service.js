@@ -5,7 +5,7 @@
 	 * [LoginService Handles login application]
 	 *
 	 */
-	function LoginService($http, Constants){
+	function LoginService($http, Constants) {
 		var _self = this;
 
 		_self.authenticate = function(user, success, error) {

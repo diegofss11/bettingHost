@@ -21,7 +21,12 @@
             url: '/login',
             controller: 'loginCtrl',
             controllerAs: 'vmLogin',
-            templateUrl: 'partials/LoginForm.tpl.html'
+            templateUrl: 'partials/Login.tpl.html'
+        }).state('dashboard', {
+            url: '/dashboard',
+            controller: 'dashboardCtrl',
+            controllerAs: 'vmDashboard',
+            templateUrl: 'partials/Dashboard.tpl.html'
         });
     })
 	.constant('Constants', {

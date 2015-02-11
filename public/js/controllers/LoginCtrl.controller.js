@@ -2,10 +2,10 @@
 	'use strict';
 
 	/**
-	 * [LoginCtrl Handles login application]
+	 * [LoginController Handles login application]
 	 * @param {Angular Material Service} $mdBottomSheet
 	 */
-	function LoginCtrl($auth, $localStorage, Constants, loginService, registerUserDialog){
+	function LoginController($auth, $localStorage, Constants, loginService, registerUserDialog) {
 		var _self = this;
 
 		_self.authenticate = function(provider) {
@@ -14,12 +14,12 @@
 				$auth.authenticate(provider);
 			} else {
 				loginService.authenticate(_self.user)
-					.success(function onAuthenticateSuccess(result){
+					.success(function onAuthenticateSuccess(result) {
 						if(result.status !== Constants.SUCCESS) {
 							alert(result.message);
 						} else {
 							$localStorage.token = result.token;
-							window.location = '/index';
+							window.location = '/dashboard';
 						}
 					})
 					.error(function(result, status, headers, config) {
@@ -32,8 +32,8 @@
 		_self.openModal = registerUserDialog.activate;
 	}
 
-	LoginCtrl.$inject = ['$auth', '$localStorage', 'Constants', 'loginService', 'registerUserDialog'];
+	LoginController.$inject = ['$auth', '$localStorage', 'Constants', 'loginService', 'registerUserDialog'];
 
 	angular.module('tourManager')
-		.controller('loginCtrl', LoginCtrl);
+		.controller('loginCtrl', LoginController);
 })();
