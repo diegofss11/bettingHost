@@ -1,15 +1,20 @@
 /*------------------------------------*\
     #BUTTONS
 \*------------------------------------*/
-@import "_mixins";
+@import "variables";
+@import "mixins";
+
+.btn {
+	outline: none !important;
+}
 
 .btn-primary,
 .btn-secondary,
+.btn-danger,
 .btn-default {
 	@include border-radius(2px);
 
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-	outline: none;
 	text-transform: uppercase;
 
 	&:hover {
@@ -17,13 +22,16 @@
 	}
 
 	&.disabled {
-		background-color: #e6e6e6;
+		background-color: $c-gray-disabled;
 	}
 }
 
+.btn-round {
+	@include border-radius(50%);
+}
+
 .btn-link {
-	outline: none;
-	color: #00bcd4;
+	color: $c-blue-primary;
 	text-transform: uppercase;
 	font-weight: 500;
 
@@ -36,8 +44,7 @@
 }
 
 .btn-link-primary {
-	outline: none;
-	color: #00bcd4;
+	color: $c-blue-primary;
 	text-transform: uppercase;
 	font-weight: 500;
 
@@ -49,14 +56,22 @@
 }
 
 .btn-primary {
-	background-color: #00bcd4;
+	background-color: $c-blue-primary;
 	border: 0;
 	letter-spacing: 0;
 
 	&:hover,
 	&:focus,
 	&:active {
-		background-color: #00aac0;
+		background-color: $c-blue-primary-hover;
+	}
+}
+
+.btn-danger {
+	background-color: $c-red-primary;
+
+	&:hover {
+		background-color: $c-red-primary-hover;
 	}
 }
 
@@ -85,4 +100,35 @@
 .btn-menu {
 	position: relative;
 	top: 5px;
+}
+
+.btn-add-item {
+	background-color: inherit;
+	margin: 10px;
+
+	.glyphicon-plus {
+		color: $c-gray-primary;
+		top: 0;
+		&:hover {
+			color: $c-gray-primary-hover;
+		}
+	}
+}
+
+.btn-remove {
+	color: $c-red-primary !important;
+	cursor: pointer;
+
+	&:hover {
+		color: $c-red-primary-hover !important;
+	}
+}
+
+.btn-edit {
+	cursor: pointer;
+	color: $c-gray-primary !important;
+
+	&:hover {
+		color: $c-gray-primary-hover !important;
+	}
 }

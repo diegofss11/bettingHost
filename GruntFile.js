@@ -105,8 +105,7 @@ module.exports = function( grunt ) {
 		        		'public/js/**/*.dialog.js',
 
 						//CSS
-		          		'public/dist/styles/css/main.css',
-		          		'public/vendor/gridism/gridism.css'
+		          		'public/dist/styles/css/main.css'
 		        	]
 		        }
 		    }

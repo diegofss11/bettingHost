@@ -1,13 +1,43 @@
 <button class="btn btn-link btn-menu" ng-click="vmDashboard.hideNav()">
 	<i class="glyphicon glyphicon-list"></i>
 </button>
-<nav ng-show="vmDashboard.isVisible" class="navigation-bar">
+<nav ng-show="vmDashboard.isVisible" class="navigation-bar depth-area2">
 	<ul>
-		<li class="btn btn-link">Item 1</li>
-		<li class="btn btn-link">Item 2</li>
+		<li class="btn btn-link">Main</li>
+		<li class="btn btn-link">
+			<a ng-href="/#/tournaments">Tournaments</a>
+		</li>
 		<li class="btn btn-link">Item 3</li>
 		<li class="btn btn-link">Item 4</li>
 		<li class="btn btn-link">Item 5</li>
 		<li class="btn btn-link">Item 6</li>
 	</ul>
 </nav>
+<section ng-controller="tournamentCtrl as vmTournament" class="tournaments">
+	<h2 class="text-center">Tournaments</h2>
+
+	<button class="btn btn-add-item">
+		<i class="glyphicon glyphicon-plus"></i>
+	</button>
+	<table ng-if="vmTournament.tournaments" class="table table-hover table-bordered table-striped tournaments-table">
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Sport</th>
+				<th>Type</th>
+				<th>Location</th>
+				<th>Members</th>
+				<th colspan="2"></th>
+			</tr>
+			<tr ng-repeat="tour in vmTournament.tournaments">
+				<td>{{ tour.name }}</td>
+				<td class="td-medium">{{ tour.sport }}</td>
+				<td class="td-medium">{{ tour.type }}</td>
+				<td>{{ tour.location }}</td>
+				<td class="td-small">{{ tour.members }}</td>
+				<td class="bordless-side td-action"><i class="btn-edit glyphicon glyphicon-edit"></i></td>
+				<td class="bordless-side td-action"><i ng-click="vmTournament.openDeletion(tour)" class="btn-remove glyphicon glyphicon-remove"></i></td>
+			</tr>
+		</tbody>
+	</table>
+</section>

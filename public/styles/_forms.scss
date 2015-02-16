@@ -1,11 +1,12 @@
 /*------------------------------------*\
     #FORMS
 \*------------------------------------*/
+@import "variables";
 
 .form-control {
 
 	&:focus {
-		border: 1px solid #00bcd4;
+		border: 1px solid $c-blue-primary;
 	}
 
 	// &.ng-invalid-form-control {

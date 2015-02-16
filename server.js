@@ -9,6 +9,7 @@ var express = require('express'),
 	morgan = require('morgan'),
 	jwt = require('jsonwebtoken'),
 	UserModel = require('./public/server/User/User.model'),
+    TournamentModel = require('./public/server/Tournament/Tournament.model'),
     db;
 
 /**
@@ -37,7 +38,7 @@ db.once('open', function databaseOpenCallback() {
 
 
 /**
-* Server API
+* User API
 *
 */
 
@@ -210,5 +211,25 @@ function _ensureAuthorized(req, res, next) {
 //Ensures autorizations to access any page
 app.get('/', function(req,res) {
   res.sendFile(__dirname+'/index.html');
-  
 });*/
+
+
+/**
+* Tournament API
+*
+*/
+
+////Gets all tournaments
+app.get('/tournaments', function(req, res) {
+    TournamentModel.find(function(err, tournaments) {
+        console.log(tournaments, 'TOURNAMENTS FOUND');
+        if (err) {
+            res.json({
+                status: 400,
+                message: 'Error ocurred: ' + err
+            });
+        } else {
+            res.json(tournaments);
+        }
+    });
+});

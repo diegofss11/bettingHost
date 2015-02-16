@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    #TABLES
+\*------------------------------------*/
+@import "variables";
+
+.bordless-side {
+	border-left: none !important;
+	border-right: none !important;
+}
+
+.td-small {
+	width: 10%;
+}
+
+.td-medium {
+	width: 12%;
+}
+
+.td-action {
+	width: 40px;
+}

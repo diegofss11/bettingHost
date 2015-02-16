@@ -2,15 +2,15 @@
     #LAYOUT
 \*------------------------------------*/
 
-@import "_variables";
-@import "_mixins";
+@import "variables";
+@import "mixins";
 
 header.header {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-	background-color: #90a4ae;
+	background-color: $c-header;
 	color: white;
 	height: $header-height;
 }
@@ -23,7 +23,7 @@ header.header {
 	position: fixed;
 	top: $header-height;
 	left: 0;
-	background-color: #eceff1;
+	background-color: $c-nav-bar;
 	height: 100%;
 	width: $navigation-bar-width;
 	padding: 50px 0;
@@ -32,4 +32,9 @@ header.header {
 		list-style-type: none;
 		line-height: 50px;
 	}
+}
+
+section .tournaments {
+	margin-left: $navigation-bar-width;
+	margin-top: $header-height;
 }

@@ -1,6 +1,7 @@
 /*------------------------------------*\
     #MODAL
 \*------------------------------------*/
+@import "variables";
 
 .modal-template {
 	bottom: 0;
@@ -50,17 +51,30 @@
 
 	.modal-register-user {
 		.modal-footer {
-			.unit.half {
+			.btn {
 				width: 48%;
+			}
 
-				.btn {
-					margin-left: 0 !important;
+			.btn-primary {
+				@include breakpoint(sm) {
+					margin-bottom: 10px;
 				}
+			}
+		}
+	}
 
-				.btn-primary {
-					@include breakpoint(sm) {
-						margin-bottom: 10px;
-					}
+	.modal-delete-tournament {
+		.modal-footer {
+			margin-top: 30px;
+
+			.btn {
+				margin: 0 !important;
+				width: 48%;
+			}
+
+			.btn-danger {
+				@include breakpoint(sm) {
+					margin-bottom: 10px;
 				}
 			}
 		}
