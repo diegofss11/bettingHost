@@ -5,6 +5,7 @@
 
 body {
 	background-color: $c-background-body;
+	font-family: $font-default;
 }
 
 ul {
@@ -15,6 +16,10 @@ ul {
 	li {
 		width: 100%;
 	}
+}
+
+h2 {
+	font-weight: 600;
 }
 
 .v-center {

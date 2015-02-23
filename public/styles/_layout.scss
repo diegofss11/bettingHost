@@ -20,21 +20,55 @@ header.header {
 }
 
 .navigation-bar {
-	position: fixed;
+	background-color: $c-navigation-bar;
+	position: absolute;
 	top: $header-height;
 	left: 0;
-	background-color: $c-nav-bar;
-	height: 100%;
-	width: $navigation-bar-width;
+	bottom: 0;
+	width: $navigation-items-width;
 	padding: 50px 0;
+	z-index: 10;
 
-	ul li{
-		list-style-type: none;
-		line-height: 50px;
+	@include breakpoint(sm) {
+		left: -1 * $navigation-items-width;
+		width: $sm-navigation-items-width;
+
+		&.navigation-bar-visible {
+			left: 0;
+
+			@include transition-property(left);
+		  	@include transition-duration(2s);
+		  	@include transition-timing-function(ease-in);
+		}
 	}
 }
 
+.navigation-items {
+	position: absolute;
+
+	ul li {
+		list-style-type: none;
+		line-height: 40px;
+
+		@include breakpoint(sm) {
+			font-size: $font-size-small;
+		}
+	}
+
+	ul li a {
+		text-decoration: none;
+	}
+}
+
+section > h2 {
+	padding-top: 50px;
+}
+
 section .tournaments {
-	margin-left: $navigation-bar-width;
+	margin-left: $navigation-items-width;
 	margin-top: $header-height;
+
+	@include breakpoint(sm) {
+		margin-left: 0;
+	}
 }

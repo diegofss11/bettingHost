@@ -98,8 +98,13 @@
 }
 
 .btn-menu {
-	position: relative;
-	top: 5px;
+	display: none;
+	position: absolute;
+	top: 10px;
+
+	@include breakpoint(sm) {
+		display: inline-block;
+	}
 }
 
 .btn-add-item {
