@@ -1,7 +1,7 @@
-<button type="button" class="btn btn-link btn-menu" ng-click="vmDashboard.hideNav()">
+<button type="button" class="btn btn-link btn-menu" ng-click="vmDashboard.isVisible = !vmDashboard.isVisible">
 	<i class="glyphicon glyphicon-list"></i>
 </button>
-<div class="navigation-bar depth-area2" ng-show="vmDashboard.isVisible" ng-class="{'navigation-bar-visible' : vmDashboard.isVisible}">
+<div class="navigation-bar depth-area2" ng-class="{'navigation-bar-visible' : vmDashboard.isVisible}">
 	<nav class="navigation-items">
 		<ul>
 			<li class="btn btn-link">
@@ -28,7 +28,7 @@
 <section ng-controller="tournamentCtrl as vmTournament" class="tournaments">
 	<h2 class="text-center">Tournaments</h2>
 
-	<button type="button" class="btn btn-add-item">
+	<button type="button" class="btn btn-add-item" ng-click="vmTournament.openAddTournamentDialog()">
 		<i class="glyphicon glyphicon-plus"></i>
 	</button>
 	<table ng-if="vmTournament.tournaments" class="table table-hover table-bordered table-striped tournaments-table">
@@ -48,7 +48,7 @@
 				<td>{{ tour.location }}</td>
 				<td class="td-small">{{ tour.members }}</td>
 				<td class="bordless-side td-action"><i class="btn-edit glyphicon glyphicon-edit"></i></td>
-				<td class="bordless-side td-action"><i ng-click="vmTournament.openDeletion(tour)" class="btn-remove glyphicon glyphicon-remove"></i></td>
+				<td class="bordless-side td-action"><i ng-click="vmTournament.openDeleteDialog({ tournament : tour })" class="btn-remove glyphicon glyphicon-remove"></i></td>
 			</tr>
 		</tbody>
 	</table>

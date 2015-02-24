@@ -5,17 +5,17 @@
 	 * [Dialog that deletes a selected tournament]
 	 *
 	 */
-	function TournamentDeletionDialog(btfModal) {
+	function TournamentAddDialog(btfModal) {
 		return btfModal({
 			controller: 'tournamentCtrl',
 		    controllerAs: 'vmTournament',
-		    templateUrl: 'partials/TournamentDeletionDialog.tpl.html'
+		    templateUrl: 'partials/TournamentAddDialog.tpl.html'
 		});
 	}
 
-	TournamentDeletionDialog.$inject = ['btfModal'];
+	TournamentAddDialog.$inject = ['btfModal'];
 
 	angular.module('tourManager')
-		.factory('tournamentDeletionDialog', TournamentDeletionDialog);
+		.factory('tournamentAddDialog', TournamentAddDialog);
 })();
 

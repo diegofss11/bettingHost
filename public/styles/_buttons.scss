@@ -104,6 +104,11 @@
 
 	@include breakpoint(sm) {
 		display: inline-block;
+
+		&:hover,
+		&:focus {
+			background-color: inherit;
+		}
 	}
 }
 
@@ -114,8 +119,10 @@
 	.glyphicon-plus {
 		color: $c-gray-primary;
 		top: 0;
-		&:hover {
+		&:hover,
+		&:focus {
 			color: $c-gray-primary-hover;
+			outline: none;
 		}
 	}
 }

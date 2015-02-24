@@ -37,8 +37,8 @@ header.header {
 			left: 0;
 
 			@include transition-property(left);
-		  	@include transition-duration(2s);
-		  	@include transition-timing-function(ease-in);
+		  	@include transition-duration(.5s);
+		  	@include transition-timing-function(ease-in-out);
 		}
 	}
 }

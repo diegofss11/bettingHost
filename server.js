@@ -219,7 +219,7 @@ app.get('/', function(req,res) {
 *
 */
 
-////Gets all tournaments
+//Gets all tournaments
 app.get('/tournaments', function(req, res) {
     TournamentModel.find(function(err, tournaments) {
         console.log(tournaments, 'TOURNAMENTS FOUND');
@@ -231,5 +231,41 @@ app.get('/tournaments', function(req, res) {
         } else {
             res.json(tournaments);
         }
+    });
+});
+
+//Create tournament
+app.post('/tournaments', function (req, res) {
+    TournamentModel.create({
+        name: req.body.name,
+        sport: req.body.sport,
+        type: req.body.type,
+        location: req.body.location,
+        members: req.body.members
+    }, function(err, tournament) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        // get and return all the tournaments after you create another
+        TournamentModel.find(function(err, tournaments) {
+            if (err)
+                res.send(err)
+            res.json(tournaments);
+        });
+    });
+});
+
+//Delete tournament
+app.delete('/tournaments/:id', function (req, res) {
+    TournamentModel.findById(req.params.id, function (err, tournament) {
+        tournament.remove(function (err) {
+            if (!err) {
+                console.log("Tournament removed");
+                return res.send('');
+            } else {
+                console.log(err);
+            }
+        });
     });
 });

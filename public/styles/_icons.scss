@@ -7,8 +7,12 @@
 	font-size: 21px;
 	top: 5px;
 
-	.glyphicon-list::before {
-		cursor: pointer;
+	.glyphicon-list {
+		&:hover,
+		&:focus {
+			color: rgba(158, 158, 158, 0.2);
+			cursor: pointer;
+		}
 	}
 }
 

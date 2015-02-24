@@ -10,9 +10,6 @@
 
 		_self.isVisible = true;
 
-		_self.hideNav = function() {
-			_self.isVisible = !_self.isVisible;
-		};
 	}
 
 	angular.module('tourManager')

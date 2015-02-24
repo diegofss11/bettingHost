@@ -1,0 +1,8 @@
+<div template-modal="Confirm delete" class="modal-delete-tournament" close="vmTournament.openDeleteTournamentDialog()">
+	<p>You are about to delete <b>{{ tournament.name }}</b>.</p>
+	<p>Do you want to proceed?</p>
+	<footer class="modal-footer">
+		<button class="btn btn-default unit half pull-left" type="submit" ng-click="vmTournament.close()">Cancel</button>
+		<button class="btn btn-danger unit half pull-right" ng-click="vmTournament.deleteTournament( tournament )">Delete</button>
+	</footer>
+</div>

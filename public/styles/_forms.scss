@@ -17,3 +17,22 @@
 	// 	}
 	// }
 }
+
+.add-tournament{
+	.type {
+		display: inline-block;
+		width: 40%;
+		margin-left: 5%;
+	}
+
+	.members {
+		display: inline-block;
+		width: 20%;
+		margin-left: 5%;
+	}
+
+	.sport {
+		display: inline-block;
+		width: 30%;
+	}
+}
