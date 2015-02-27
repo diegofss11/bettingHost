@@ -95,6 +95,7 @@ module.exports = function( grunt ) {
 		        		'public/dist/js/templates_cache.js',
 		        		'public/vendor/satellizer/satellizer.js',
 		        		'public/vendor/ngstorage/ngStorage.js',
+		        		'public/vendor/ng-table/dist/ng-table.js',
 
 		        		//APP FILES
 		        		'public/js/app.js',
@@ -105,7 +106,9 @@ module.exports = function( grunt ) {
 		        		'public/js/**/*.dialog.js',
 
 						//CSS
-		          		'public/dist/styles/css/main.css'
+		          		'public/dist/styles/css/main.css',
+		          		'public/vendor/ng-table/dist/ng-table.css'
+
 		        	]
 		        }
 		    }
@@ -123,6 +126,7 @@ module.exports = function( grunt ) {
 		watch: {
 			html: {
 				files: ['public/index.html', 'public/partials/*.tpl.html'],
+				task: ['default'],
 				options: {
 					livereload: true
 				}

@@ -5,24 +5,40 @@
 	 * [TournamentController Handles CRUD for tournaments]
 	 *
 	 */
-	function TournamentController($scope, tournamentDeleteDialog, tournamentAddDialog, tournamentService, Constants) {
-		var _self = this;
+	function TournamentController($filter, ngTableParams, tournamentDeleteDialog, tournamentAddDialog, tournamentService, Constants) {
+		var _self = this, tournaments,
+			filterOrderBy = $filter('orderBy');
 
 		_getTournaments();
 
 		function _getTournaments() {
-		 	tournamentService.getTournaments().then(function(result) {
-		 		if(result.status === Constants.SUCCESS) {
-		 			_self.tournaments = result.data;
-		 		}
-		 	});
+			tournamentService.getTournaments().then(function(result) {
+				if(result.status === Constants.SUCCESS) {
+					tournaments = result.data;
+
+					_self.tableParams = new ngTableParams({
+				        page: 1,
+				        count: 2,
+				        sorting: {
+				        	name: 'asc'
+				        }
+				    }, {
+				        total: tournaments.length,
+				        getData: function($defer, params) {
+				            var orderedData = params.sorting() ? filterOrderBy(tournaments, params.orderBy()) : tournaments;
+
+				            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				        }
+				    });
+	        	}
+	        });
 		}
 
 		_self.addTournament = function(newTournament) {
 			tournamentService.addTournament(newTournament).then(function(result) {
 		 		if(result.status === Constants.SUCCESS) {
 		 			alert("CREATED " + newTournament.name);
-		 			_self.tournaments = result.data;
+		 			_getTournaments();
 		 			_self.closeAddTournamentDialog();
 		 		}
 		 	});
@@ -43,9 +59,10 @@
 		_self.closeDeleteDialog = tournamentDeleteDialog.deactivate;
 		_self.openAddTournamentDialog = tournamentAddDialog.activate;
 		_self.closeAddTournamentDialog = tournamentAddDialog.deactivate;
+
 	}
 
-	TournamentController.$inject = ['$scope', 'tournamentDeleteDialog', 'tournamentAddDialog', 'tournamentService', 'Constants'];
+	TournamentController.$inject = ['$filter', 'ngTableParams', 'tournamentDeleteDialog', 'tournamentAddDialog', 'tournamentService', 'Constants'];
 
 	angular.module('tourManager')
 		.controller('tournamentCtrl', TournamentController);

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('tourManager', ['btford.modal', 'tourManager.tpls', 'tourManager.exception', 'ngStorage', 'ngMessages',
-        'satellizer', 'ui.bootstrap', 'ui.router'])
+        'satellizer', 'ngTable', 'ui.bootstrap', 'ui.router'])
 
 	//PROVIDERS
     .config(function($authProvider){

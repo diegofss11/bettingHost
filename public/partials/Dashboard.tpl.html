@@ -31,22 +31,14 @@
 	<button type="button" class="btn btn-add-item" ng-click="vmTournament.openAddTournamentDialog()">
 		<i class="glyphicon glyphicon-plus"></i>
 	</button>
-	<table ng-if="vmTournament.tournaments" class="table table-hover table-bordered table-striped tournaments-table">
+	<table class="table table-hover table-bordered table-striped tournaments-table" ng-table="vmTournament.tableParams">
 		<tbody>
-			<tr>
-				<th>Name</th>
-				<th>Sport</th>
-				<th>Type</th>
-				<th>Location</th>
-				<th>Members</th>
-				<th colspan="2"></th>
-			</tr>
-			<tr ng-repeat="tour in vmTournament.tournaments">
-				<td>{{ tour.name }}</td>
-				<td class="td-medium">{{ tour.sport }}</td>
-				<td class="td-medium">{{ tour.type }}</td>
-				<td>{{ tour.location }}</td>
-				<td class="td-small">{{ tour.members }}</td>
+			<tr ng-repeat="tour in $data">
+				<td data-title="'Name'" sortable="'name'"> {{ tour.name }} </td>
+				<td data-title="'Sport'" sortable="'sport'"> {{ tour.sport }} </td>
+				<td data-title="'Type'" sortable="'type'"> {{ tour.type }} </td>
+				<td data-title="'Location'" sortable="'location'"> {{ tour.location }} </td>
+				<td data-title="'Members'" sortable="'members'"> {{ tour.members }} </td>
 				<td class="bordless-side td-action"><i class="btn-edit glyphicon glyphicon-edit"></i></td>
 				<td class="bordless-side td-action"><i ng-click="vmTournament.openDeleteDialog({ tournament : tour })" class="btn-remove glyphicon glyphicon-remove"></i></td>
 			</tr>

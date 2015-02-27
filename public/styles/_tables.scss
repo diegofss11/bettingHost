@@ -19,3 +19,34 @@
 .td-action {
 	width: 40px;
 }
+
+.tournaments {
+	.ng-table th.header {
+		cursor: pointer;
+
+		&:nth-last-child(2) {
+			border-right: 0;
+		}
+
+		&:last-child {
+			border-left: 0;
+		}
+	}
+
+	.pagination {
+		margin: 0;
+	}
+
+	ul.pagination {
+		width: auto;
+	}
+
+	.pagination,
+	.ng-table-counts {
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+		.btn-default {
+			box-shadow: none;
+		}
+	}
+}
