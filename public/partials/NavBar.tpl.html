@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-link btn-menu" ng-click="vmNavBar.isVisible = !vmNavBar.isVisible">
+	<i class="glyphicon glyphicon-list"></i>
+</button>
+<div class="navigation-bar depth-area2" ng-class="{'navigation-bar-visible' : vmNavBar.isVisible}">
+	<nav class="navigation-items">
+		<ul>
+			<li class="btn btn-link">
+				<a ng-href="/#/dashboard">Main</a>
+			</li>
+			<li class="btn btn-link">
+				<a ng-href="/#/tournaments">Tournaments</a>
+			</li>
+			<li class="btn btn-link">
+				<a ng-href="#">Item 3</a>
+			</li>
+			<li class="btn btn-link">
+				<a ng-href="#">Item 4</a>
+			</li>
+			<li class="btn btn-link">
+				<a ng-href="#">Item 5</a>
+			</li>
+			<li class="btn btn-link">
+				<a ng-href="#">Item 6</a>
+			</li>
+		</ul>
+	</nav>
+</div>

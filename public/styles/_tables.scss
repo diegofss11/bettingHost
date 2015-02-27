@@ -3,6 +3,16 @@
 \*------------------------------------*/
 @import "variables";
 
+.table {
+	thead tr th:hover {
+		color: white;
+	}
+
+	tr:hover {
+		background-color: rgba(0,0,0,0.04) !important;
+	}
+}
+
 .bordless-side {
 	border-left: none !important;
 	border-right: none !important;

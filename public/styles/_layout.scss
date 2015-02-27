@@ -16,7 +16,9 @@ header.header {
 }
 
 .main-content {
+	margin-left: $navigation-items-width;
 	margin-top: $header-height;
+	padding-top: 30px;
 }
 
 .navigation-bar {
@@ -28,19 +30,6 @@ header.header {
 	width: $navigation-items-width;
 	padding: 50px 0;
 	z-index: 10;
-
-	@include breakpoint(sm) {
-		left: -1 * $navigation-items-width;
-		width: $sm-navigation-items-width;
-
-		&.navigation-bar-visible {
-			left: 0;
-
-			@include transition-property(left);
-		  	@include transition-duration(.5s);
-		  	@include transition-timing-function(ease-in-out);
-		}
-	}
 }
 
 .navigation-items {
@@ -49,26 +38,9 @@ header.header {
 	ul li {
 		list-style-type: none;
 		line-height: 40px;
-
-		@include breakpoint(sm) {
-			font-size: $font-size-small;
-		}
 	}
 
 	ul li a {
 		text-decoration: none;
-	}
-}
-
-section > h2 {
-	padding-top: 50px;
-}
-
-section .tournaments {
-	margin-left: $navigation-items-width;
-	margin-top: $header-height;
-
-	@include breakpoint(sm) {
-		margin-left: 0;
 	}
 }

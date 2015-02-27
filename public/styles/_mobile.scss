@@ -1,3 +1,63 @@
 /*------------------------------------*\
     #MOBILE
 \*------------------------------------*/
+@import "variables";
+@import "mixins";
+
+@include breakpoint(sm) {
+	//LAYOUTS
+	.main-content {
+		margin-left: 0;
+	}
+
+	.navigation-bar {
+		left: -1 * $navigation-items-width;
+		width: $sm-navigation-items-width;
+
+		&.navigation-bar-visible {
+			left: 0;
+
+			@include transition-property(left);
+		  	@include transition-duration(.5s);
+		  	@include transition-timing-function(ease-in-out);
+		}
+	}
+
+	.navigation-items ul li {
+		font-size: $font-size-small;
+	}
+
+
+
+	//BUTTONS
+	.btn-menu {
+		display: inline-block;
+
+		&:hover,
+		&:focus {
+			background-color: inherit;
+		}
+	}
+
+
+
+
+	//MODALS
+	.modal-dialog {
+		width: 100%;
+		margin: 0;
+	}
+
+	.modal-register-user .modal-footer .btn-primary {
+		margin-bottom: 10px;
+	}
+
+	.modal-delete-tournament,
+	.modal-create-tournament {
+		.modal-footer {
+			.btn-danger {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}

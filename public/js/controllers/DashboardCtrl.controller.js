@@ -2,14 +2,11 @@
 	'use strict';
 
 	/**
-	 * [DashboardController Handles login application]
+	 * [DashboardController Handles dashboard application]
 	 *
 	 */
 	function DashboardController() {
 		var _self = this;
-
-		_self.isVisible = true;
-
 	}
 
 	angular.module('tourManager')

@@ -30,11 +30,6 @@
 		width: 500px;
 		background-color: #f5f5f5;
 		box-shadow: 0px 27px 24px 0 rgba(0, 0, 0, 0.2);
-
-		@include breakpoint(sm) {
-			width: 100%;
-			margin: 0;
-		}
 	}
 
 		.modal-header {
@@ -59,12 +54,6 @@
 			.btn {
 				width: 48%;
 			}
-
-			.btn-primary {
-				@include breakpoint(sm) {
-					margin-bottom: 10px;
-				}
-			}
 		}
 	}
 
@@ -76,12 +65,6 @@
 			.btn {
 				margin: 0 !important;
 				width: 48%;
-			}
-
-			.btn-danger {
-				@include breakpoint(sm) {
-					margin-bottom: 10px;
-				}
 			}
 		}
 	}

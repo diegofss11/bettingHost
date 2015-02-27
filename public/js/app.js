@@ -15,30 +15,23 @@
     	});
 	})
     .config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/login');
-
-        // $stateProvider.state('login', {
-        //     url: '/login',
-        //     controller: 'loginCtrl',
-        //     controllerAs: 'vmLogin',
-        //     templateUrl: 'partials/Login.tpl.html'
-        // }).state('dashboard', {
-        //     url: '/dashboard',
-        //     controller: 'dashboardCtrl',
-        //     controllerAs: 'vmDashboard',
-        //     templateUrl: 'partials/Dashboard.tpl.html'
-        // }).state('tournaments', {
-        //     url: '/tournaments',
-        //     controller: 'tournamentCtrl',
-        //     controllerAs: 'vmTournament',
-        //     templateUrl: 'partials/Tournaments.tpl.html'
-        // });
+        $urlRouterProvider.otherwise('/dashboard'); //bypassing login
 
         $stateProvider.state('login', {
             url: '/login',
+            controller: 'loginCtrl',
+            controllerAs: 'vmLogin',
+            templateUrl: 'partials/Login.tpl.html'
+        }).state('dashboard', {
+            url: '/dashboard',
             controller: 'dashboardCtrl',
             controllerAs: 'vmDashboard',
             templateUrl: 'partials/Dashboard.tpl.html'
+        }).state('tournaments', {
+            url: '/tournaments',
+            controller: 'tournamentCtrl',
+            controllerAs: 'vmTournament',
+            templateUrl: 'partials/Tournaments.tpl.html'
         });
     })
 	.constant('Constants', {
