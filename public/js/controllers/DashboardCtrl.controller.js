@@ -6,7 +6,7 @@
 	 *
 	 */
 	function DashboardController() {
-		var _self = this;
+
 	}
 
 	angular.module('tourManager')

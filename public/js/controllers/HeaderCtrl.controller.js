@@ -6,7 +6,7 @@
 	 *
 	 */
 	function HeaderController() {
-		var _self = this;
+
 	}
 
 	angular.module('tourManager')

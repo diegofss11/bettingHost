@@ -12,7 +12,11 @@
 				<td data-title="'Type'" sortable="'type'"> {{ tour.type }} </td>
 				<td data-title="'Location'" sortable="'location'"> {{ tour.location }} </td>
 				<td data-title="'Members'" sortable="'members'"> {{ tour.members }} </td>
-				<td class="bordless-side td-action"><i class="btn-edit glyphicon glyphicon-edit"></i></td>
+				<td class="bordless-side td-action">
+					<a ui-sref=".edit">
+						<i class="btn-edit glyphicon glyphicon-edit"></i>
+					</a>
+				</td>
 				<td class="bordless-side td-action"><i ng-click="vmTournament.openDeleteDialog({ tournament : tour })" class="btn-remove glyphicon glyphicon-remove"></i></td>
 			</tr>
 		</tbody>

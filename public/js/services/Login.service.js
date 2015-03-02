@@ -8,7 +8,7 @@
 	function LoginService($http, Constants) {
 		var _self = this;
 
-		_self.authenticate = function(user, success, error) {
+		_self.authenticate = function(user) {
 			return $http.post(Constants.SERVER_BASE_URL + '/authenticate', user);
 		};
 	}

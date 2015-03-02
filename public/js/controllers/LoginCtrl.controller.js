@@ -5,7 +5,7 @@
 	 * [LoginController Handles login application]
 	 * @param {Angular Material Service} $mdBottomSheet
 	 */
-	function LoginController($auth, $localStorage, Constants, loginService, registerUserDialog) {
+	function LoginController($auth, $localStorage, $state, Constants, loginService, registerUserDialog) {
 		var _self = this;
 
 		_self.authenticate = function(provider) {
@@ -19,10 +19,10 @@
 							alert(result.message);
 						} else {
 							$localStorage.token = result.token;
-							window.location = '/dashboard';
+							$state.transitionTo('dashboard');
 						}
 					})
-					.error(function(result, status, headers, config) {
+					.error(function(result) {
 						console.log(result.message);
 	  				});
 			}
@@ -32,7 +32,7 @@
 		_self.openModal = registerUserDialog.activate;
 	}
 
-	LoginController.$inject = ['$auth', '$localStorage', 'Constants', 'loginService', 'registerUserDialog'];
+	LoginController.$inject = ['$auth', '$localStorage', '$state', 'Constants', 'loginService', 'registerUserDialog'];
 
 	angular.module('tourManager')
 		.controller('loginCtrl', LoginController);

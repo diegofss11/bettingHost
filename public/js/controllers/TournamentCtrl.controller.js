@@ -16,6 +16,7 @@
 				if(result.status === Constants.SUCCESS) {
 					tournaments = result.data;
 
+					/*jshint -W055 */
 					_self.tableParams = new ngTableParams({
 				        page: 1,
 				        count: 2,
@@ -37,7 +38,7 @@
 		_self.addTournament = function(newTournament) {
 			tournamentService.addTournament(newTournament).then(function(result) {
 		 		if(result.status === Constants.SUCCESS) {
-		 			alert("CREATED " + newTournament.name);
+		 			alert('CREATED ' + newTournament.name);
 		 			_getTournaments();
 		 			_self.closeAddTournamentDialog();
 		 		}
