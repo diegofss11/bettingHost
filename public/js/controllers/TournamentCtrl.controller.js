@@ -13,7 +13,7 @@
 
 		function _getTournaments() {
 			tournamentService.getTournaments().then(function(result) {
-				if(result.status === Constants.SUCCESS) {
+				if(result.status === Constants.SUCCESS) {console.log('GET');
 					tournaments = result.data;
 
 					/*jshint -W055 */
