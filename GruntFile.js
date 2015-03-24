@@ -56,7 +56,7 @@ module.exports = function( grunt ) {
 			},
 			main: {
 				src: ['public/partials/*.tpl.html'],
-      			dest: 'public/dist/js/templates_cache.js'
+      			dest: 'public/dist/js/templatesCache.js'
     		}
 		},
 		injector: {
@@ -68,6 +68,8 @@ module.exports = function( grunt ) {
 		      		'public/index.html' : [
 		        		//JS
 		        		'public/vendor/angular/angular.js',
+						'public/vendor/angular-ui-router/release/angular-ui-router.js',
+						'public/dist/js/templatesCache.js',
 
 		        		//APP FILES
 		        		'public/js/app.js',

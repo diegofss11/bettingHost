@@ -28,7 +28,10 @@ module.exports = function(config) {
         'public/js/**/*.dialog.js',
 
         //TESTS FILES
-        'test/unit/**/*.spec.js'
+        'test/unit/**/*.spec.js',
+
+        //MOCK FILES
+        'mock/*.json'
     ],
 
 

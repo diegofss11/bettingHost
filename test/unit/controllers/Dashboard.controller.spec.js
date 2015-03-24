@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	describe('Controller: betController', function(){
+	describe('Controller: dashboardController', function(){
 
 		var $scope, ctrl, dataProvider;
 
@@ -11,7 +11,7 @@
 			$scope = _$rootScope_.$new();
 			dataProvider = _dataProvider_;
 
-			ctrl = _$controller_('betController', {
+			ctrl = _$controller_('dashboardController', {
 				$scope: $scope
 			});
 
