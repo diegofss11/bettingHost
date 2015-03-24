@@ -5,7 +5,7 @@
 	 * [DataProviderService Serve the application with mock data]
 	 *
 	 */
-	function DataProviderService(ProductType) {
+	function DataProviderService(Constants) {
 		var _self = this;
 
 		_self.data = {
@@ -122,29 +122,73 @@
 			result: '2:3:1'
 		};
 
-		_self.getWinPool = function(product) {
+		function _getComissionRate(product) {
+			switch(product) {
+				case Constants.PRODUCT_TYPE_WIN:
+					return Constants.WIN_COMISSION;
+				case Constants.PRODUCT_TYPE_PLACE:
+					return Constants.PLACE_COMISSION;
+				case Constants.PRODUCT_TYPE_EXACTA:
+					return Constants.EXACTA_COMISSION;
+			}
+		};
+
+		function _getStake(product, selections) {
+			var bets = _self.data.bets,
+				length = bets.length,
+				totalStake = 0,
+				bet, betProduct, betSelections, betStake;
+
+			for (var i = 0; i < length; i++) {
+				bet = bets[i].Bet;
+				betProduct = bet.split(':')[0];
+				betSelections = bet.split(':')[1];
+				betStake = parseFloat(bet.split(':')[2]);
+
+				//used double equals to compare x,x with [x, x]
+				if (product === betProduct && selections == betSelections) {
+					betSelections = bet.split(':')[1];
+					totalStake += betStake;
+				}
+			}
+
+			return totalStake;
+		};
+
+		function _getWinPool(product) {
 			var bets = _self.data.bets,
 				length = bets.length,
 				winPool = 0,
-				bet, betProduct, betSelections, betStake;
+				comission = _getComissionRate(product),
+				bet, betProduct, betStake;
 
 			for (var i = 0; i < length; i++) {
 				bet = bets[i].Bet;
 				betProduct = bet.split(':')[0];
 
 				if (product === betProduct) {
-					betSelections = bet.split(':')[1];
 					betStake = parseFloat(bet.split(':')[2]);
-					console.log(betStake)
 					winPool += betStake;
 				}
 			}
 
-			return winPool;
+			return winPool * (1 - comission);
 		};
+
+		_self.getPayout = function(product, selections) {
+			var winPool = _getWinPool(product),
+				winStake = _getStake(product, selections),
+				payout = winPool / winStake;
+
+			if (product === Constants.PRODUCT_TYPE_PLACE) {
+				payout = payout / Constants.NUMBER_OF_RUNNERS;
+			}
+
+			return +payout.toFixed(2);
+		}
 	}
 
-	DataProviderService.$inject = ['ProductType'];
+	DataProviderService.$inject = ['Constants'];
 
 	angular.module('bettingHost')
 		.service('dataProvider', DataProviderService);
