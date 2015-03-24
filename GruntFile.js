@@ -1,5 +1,3 @@
-var Dgeni = require('dgeni');
-
 module.exports = function( grunt ) {
 	require('time-grunt')(grunt); //shows the execution time for tasks
 
@@ -10,14 +8,6 @@ module.exports = function( grunt ) {
 	            configFile: 'config/karma.conf.js'
 	        }
 	    },
-	    protractor: {
-      		options: {
-        		keepAlive: true,
-        		noColor: false,
-        		configFile: 'config/protractor.conf.js'
-      		},
-      		run: {},
-    	},
 	    compass: {
 			build: {
 				options: {
@@ -26,14 +16,7 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
-		uglify: {
-		    app: {
-		    	files: {
-		        	'public/dist/js/output.min.js': ['public/dist/js/temp/Annotated.js']
-		      	}
-		    }
-  		},
-  		jshint: {
+		jshint: {
 			all: {
 				options: {
 					jshintrc: '.jshintrc'
@@ -55,7 +38,7 @@ module.exports = function( grunt ) {
 				rename: function(moduleName) {
         			return moduleName.replace('../public/partials/', '');
       			},
-      			module: 'tourManager.tpls',
+      			module: 'bettingHost.tpls',
       			base: 'public',
       			indentString: '    ',
       			singleModule: true,
@@ -84,45 +67,21 @@ module.exports = function( grunt ) {
 		      	files: {
 		      		'public/index.html' : [
 		        		//JS
-		        		'public/vendor/jquery/dist/jquery.js',
 		        		'public/vendor/angular/angular.js',
-		        		'public/vendor/angular-animate/angular-animate.js',
-		        		'public/vendor/angular-aria/angular-aria.js',
-		        		'public/vendor/angular-ui-router/release/angular-ui-router.js',
-		        		'public/vendor/angular-modal/modal.js',
-		        		'public/vendor/angular-bootstrap/ui-bootstrap.js',
-		        		'public/vendor/angular-messages/angular-messages.js',
-		        		'public/dist/js/templates_cache.js',
-		        		'public/vendor/satellizer/satellizer.js',
-		        		'public/vendor/ngstorage/ngStorage.js',
-		        		'public/vendor/ng-table/dist/ng-table.js',
 
 		        		//APP FILES
 		        		'public/js/app.js',
 		        		'public/js/**/*.controller.js',
 		        		'public/js/**/*.service.js',
 		        		'public/js/**/*.directive.js',
-		        		'public/js/**/*.decorator.js',
 		        		'public/js/**/*.dialog.js',
 
 						//CSS
-		          		'public/dist/styles/css/main.css',
-		          		'public/vendor/ng-table/dist/ng-table.css'
-
-		        	]
+		          		'public/dist/styles/css/main.css'
+		          	]
 		        }
 		    }
 		},
-		ngAnnotate: {
-	        options: {
-	            singleQuotes: true
-	        },
-	        app: {
-	            files: {
-	            	'public/dist/js/temp/Annotated.js' : ['public/js/**/*.js']
-	            }
-	        }
-    	},
 		watch: {
 			html: {
 				files: ['public/index.html', 'public/partials/*.tpl.html'],
@@ -151,8 +110,7 @@ module.exports = function( grunt ) {
 				}
 		    }
     	}
-
-  	});
+	});
 
 	// ===========================================================================
   	// EVENTS ====================================================================
@@ -162,8 +120,7 @@ module.exports = function( grunt ) {
 	});
 
 
-
-  	// ===========================================================================
+	// ===========================================================================
   	// LOAD GRUNT PLUGINS ========================================================
     // ===========================================================================
 	grunt.loadNpmTasks('grunt-contrib-compass'); //compile SASS to CSS - must install compass through gem - gem install compass
@@ -174,8 +131,6 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks('grunt-contrib-watch'); //run predefined tasks whenever watched file patterns are added, changed or deleted.
 	grunt.loadNpmTasks('grunt-html2js'); //converts AngularJS templates to JavaScript
 	grunt.loadNpmTasks('grunt-injector'); //injects css and js in a file
-	grunt.loadNpmTasks('grunt-ng-annotate'); //adds and removes AngularJS dependency injection using annotations
-	grunt.loadNpmTasks('grunt-protractor-runner'); //plugin for protractor runner
 	grunt.loadNpmTasks('grunt-open'); //open urls and files from a grunt task
 	grunt.loadNpmTasks('grunt-karma'); //karma test runner
 
@@ -186,19 +141,8 @@ module.exports = function( grunt ) {
 
   	//TESTS
 	grunt.registerTask('test',['karma']);
-	grunt.registerTask('test-protractor',['protractor']);
 	// ==========================================================================
 
-
-	grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
-		var done = this.async(),
-			dgeni = new Dgeni([require('./docs/dgeni-conf')]);
-
-		dgeni.generate().then(done);
-	});
-
 	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'clean:temp', 'watch']);
-
-	grunt.registerTask('build',['clean:dist', 'compass', 'html2js', 'injector' ,'jshint', 'ngAnnotate', 'dgeni', 'uglify', 'watch', 'clean:temp']);
 };
 

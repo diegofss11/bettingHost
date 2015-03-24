@@ -1,22 +1,11 @@
 {
-  "name": "TourManager",
-  "description": "An application to manager your competitors of any competition",
+  "name": "BettingHost",
+  "description": "Betting host",
   "version": "0.0.0",
-  "repository": "https://github.com/diegofss11/tourManager",
+  "repository": "https://github.com/diegofss11/bettingHost",
   "license": "MIT",
   "devDependencies": {
     "angular": "~1.3.2",
-    "angular-mocks": "~1.3.2",
-    "angular-animate": "~1.3.10",
-    "angular-aria": "~1.3.10",
-    "ngstorage": "~0.3.0",
-    "satellizer": "~0.9.0",
-    "bootstrap": "~3.3.2",
-    "angular-bootstrap": "~0.12.0",
-    "angular-messages": "~1.3.11",
-    "angular-ui-router": "~0.2.13",
-    "angular-modal": "~0.4.0",
-    "jquery": "~2.1.3",
-    "ng-table": "~0.5.2"
+    "angular-mocks": "~1.3.2"
   }
 }

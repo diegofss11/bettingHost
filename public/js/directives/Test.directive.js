@@ -20,6 +20,6 @@
 		};
 	}
 
-	angular.module('tourManager')
+	angular.module('bettingHost')
 		.directive('navBar', NavBarDirective);
 })();
