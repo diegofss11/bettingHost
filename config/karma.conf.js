@@ -17,21 +17,21 @@ module.exports = function(config) {
         //LIBRARY FILES
         'public/vendor/angular/angular.js',
         'public/vendor/angular-mocks/angular-mocks.js',
-        'public/dist/js/templates_cache.js',
+        'public/vendor/angular-ui-router/release/angular-ui-router.js',
+        'public/dist/js/templatesCache.js',
 
         //APP FILES
         'public/js/app.js',
         'public/js/**/*.controller.js',
         'public/js/**/*.service.js',
         'public/js/**/*.directive.js',
-        'public/js/**/*.decorator.js',
-        'public/js/**/*.dialog.js',
+        'public/js/**/*.filter.js',
 
         //TESTS FILES
         'test/unit/**/*.spec.js',
 
         //MOCK FILES
-        'mock/*.json'
+        '../resources/*.json'
     ],
 
 

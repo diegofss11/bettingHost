@@ -76,11 +76,11 @@ module.exports = function( grunt ) {
 		        		'public/js/**/*.controller.js',
 		        		'public/js/**/*.service.js',
 		        		'public/js/**/*.directive.js',
-		        		'public/js/**/*.dialog.js',
+		        		'public/js/**/*.filter.js',
 
 						//CSS
 		          		'public/dist/styles/css/main.css'
-		          	]
+					]
 		        }
 		    }
 		},

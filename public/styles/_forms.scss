@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+
+textarea {
+    padding: 5px;
+
+    &.input-bets {
+        width: 100%;
+        display: block;
+        resize: none;
+    }
+}

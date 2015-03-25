@@ -5,17 +5,35 @@
 	 * [dashboardController Handles dashboard application]
 	 *
 	 */
-	function DashboardController(betDataProvider) {
-		var _self = this;
+	function DashboardController($filter, betDataProvider) {
+		var _self = this, promise;
 
-		_self.mock = betDataProvider.data;
+		/*
+		 * IIFE method
+		 * Get a example bet/result as default
+		 */
+		(function() {
+			promise = betDataProvider.getResourceFile();
 
-		_self.getWinPoolValue = function() {
-			return 0;
+			promise.then(function(result) {
+				_self.race = {
+					input: result.data
+				};
+			});
+		})();
+
+		/*
+		 * Public method
+		 * Resolves race output values
+		 */
+		_self.processResult = function() {
+			var formattedBets = $filter('inputFormatter')(_self.race.input);
+
+			_self.race.output = betDataProvider.processOutput(formattedBets);
 		}
 	}
 
-	DashboardController.$inject = ['betDataProvider'];
+	DashboardController.$inject = ['$filter', 'betDataProvider'];
 
 	angular.module('bettingHost')
 		.controller('dashboardController', DashboardController);

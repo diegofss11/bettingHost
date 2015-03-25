@@ -2,18 +2,24 @@
 	'use strict';
 
 	/**
-	 * [BetDataProviderService Serves the application with mock data]
+	 * [BetDataProviderService Serves the application with resources data]
 	 *
 	 */
 	function BetDataProviderService($http, Constants) {
 		var _self = this;
 
-		(function() {
-			$http.get('/mock/data.json').then(function(response) {
-				_self.data = response;
-			});
-		})();
+		/*
+		 * Public function
+		 * Gets resource file data.txt to be processed
+		 */
+		_self.getResourceFile = function() {
+			return $http.get('/resources/data.txt');
+		};
 
+		/*
+		 * Private function
+		 * Gets company commission rate for each type
+		 */
 		function _getCommissionRate(type) {
 			switch(type) {
 				case Constants.TYPE_WIN:
@@ -27,6 +33,10 @@
 			}
 		};
 
+		/*
+		 * Private function
+		 * Gets stake based on the type and selections
+		 */
 		function _getStake(type, selections) {
 			var bets = _self.data.bets,
 				length = bets.length,
@@ -49,6 +59,10 @@
 			return totalStake;
 		};
 
+		/*
+		 * Private function
+		 * Gets win pool value deducting company commission
+		 */
 		function _getWinPool(type) {
 			var bets = _self.data.bets,
 				length = bets.length,
@@ -69,20 +83,15 @@
 			return winPool * (1 - commission);
 		};
 
-		_self.getPayout = function(type, selections) {
-			var winPool = _getWinPool(type),
-				winStake = _getStake(type, selections),
-				payout = winPool / winStake;
-
-			if (type === Constants.TYPE_PLACE) {
-				payout = payout / Constants.NUMBER_OF_RUNNERS;
-			}
-
-			return +payout.toFixed(2);
-		}
-
-		_self.resolveOutput = function() {
-			var result = _self.data.result,
+		/*
+		 * Private function
+		 * Calculates and formats the output given bets
+		 *
+		 * [Format requested]
+		 * <product>:<winningSelections>:<dividend>
+		 */
+		function _resolveOutput(formattedBets) {
+			var result = formattedBets.Result,
 				horses = result.split(':'),
 				output, payout;
 
@@ -97,7 +106,38 @@
 			payout = _self.getPayout(Constants.TYPE_EXACTA, [horses[0], horses[1]]);
 			output += 'Exacta:' + horses[0] + ',' + horses[1] + ':$' + payout + '\n';
 
-			_self.output = output;
+			return output;
+		}
+
+		/*
+		 * Public function
+		 * Returns output values given bets
+		 */
+		_self.processOutput = function(formattedBets) {
+			var output = 'invalid input';
+
+			if(formattedBets) {
+				_self.data = formattedBets;
+				output = _resolveOutput(formattedBets);
+			}
+
+			return output;
+		};
+
+		/*
+		 * Public function
+		 * Get payout for a given type and selections
+		 */
+		_self.getPayout = function(type, selections) {
+			var winPool = _getWinPool(type),
+				winStake = _getStake(type, selections),
+				payout = winPool / winStake;
+
+			if (type === Constants.TYPE_PLACE) {
+				payout = payout / Constants.NUMBER_OF_RUNNERS;
+			}
+
+			return +payout.toFixed(2);
 		}
 	}
 

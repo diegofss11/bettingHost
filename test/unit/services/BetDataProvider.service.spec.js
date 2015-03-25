@@ -2,14 +2,34 @@
 	'use strict';
 
 	describe('Service: betDataProvider', function() {
-		var service, constants;
+		var $q, service, constants, resourceFile, deferred, promise;
 
 		beforeEach(module('bettingHost'));
 
-		beforeEach(inject(function(_betDataProvider_, _Constants_) {
+		function _getTextFile() {
+			return deferred.promise;
+		}
+
+		beforeEach(inject(function(_$http_, _$q_, _betDataProvider_, _Constants_) {
+			$q = _$q_;
 			service = _betDataProvider_;
 			constants = _Constants_;
+
+			deferred = $q.defer();
+			resourceFile = _$http_('resources/data.txt').then(function(data) {
+				deferred.resolve(data);
+			});
 		}));
+
+		describe('#processOutput', function() {
+			fit('should get dividend from `WIN` and selection `2`', function() {
+				promise = _getTextFile();
+
+				promise.then(function(data) {
+					console.log(data);
+				})
+			});
+		});
 
 		describe('#getPayout', function() {
 			it('should get dividend from `WIN` and selection `2`', function() {
@@ -33,7 +53,7 @@
 			});
 		});
 
-		describe('#resolveOutput', function() {
+		xdescribe('#resolveOutput', function() {
 			it('should get dividend from `WIN` and selection `2`', function() {
 				service.resolveOutput();
 				console.log(service.output);

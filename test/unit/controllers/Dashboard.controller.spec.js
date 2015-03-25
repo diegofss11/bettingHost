@@ -19,7 +19,7 @@
 		}));
 
 		describe('#init', function() {
-			it('should mock data not be undefined', function() {
+			it('should resources data not be undefined', function() {
 				expect(ctrl.mock).toBeDefined();
 			});
 		});

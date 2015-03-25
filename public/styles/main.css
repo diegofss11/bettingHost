@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #MAIN CSS - OTHER FILES MUST BE IMPORTED HERE
+\*------------------------------------*/
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+.btn-results {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px; }
+
+/*------------------------------------*\
+    #CONTAINERS
+\*------------------------------------*/
+pre {
+  background-color: inherit;
+  border: none;
+  line-height: 1.6; }
+
+.input-container {
+  width: 280px; }
+
+.output {
+  margin-left: 60px; }
+
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+textarea {
+  padding: 5px; }
+  textarea.input-bets {
+    width: 100%;
+    display: block;
+    resize: none; }
+
+/*# sourceMappingURL=main.css.map */

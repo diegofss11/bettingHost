@@ -5,7 +5,6 @@ var express = require('express'),
 * Application setup
 *
 */
-
 app.use(express.static(__dirname + '/public'));
 
 app.set('port', 3030);
