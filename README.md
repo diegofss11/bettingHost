@@ -14,7 +14,7 @@ Simplified Tote Betting application
 * [Heroku] (http://heroku.com/) - Heroku is a Cloud Application Plataform (PaaS)
 
 ##Acessing application on Heroku
-To access the application on a Cloud Plataform access: xxxxxxxx
+The application is hosted on Heroku. To access: xxxxxxxx
 
 ## Installation
 
@@ -72,4 +72,4 @@ The application server is a NodeJS application that relies upon some 3rd Party n
     cd bettingHost
     node server.js
     ```
-* The application will be in (http://localhost:3030/)
+* The application will be in [(http://localhost:3030/)] (http://localhost:3030/)
