@@ -14,7 +14,7 @@ Simplified Tote Betting application
 * [Heroku] (http://heroku.com/) - Heroku is a Cloud Application Plataform (PaaS)
 
 ##Acessing application on Heroku
-The application is hosted on Heroku. To access: xxxxxxxx
+The application is hosted on Heroku. To access: [https://tote-betting-application.herokuapp.com/](https://tote-betting-application.herokuapp.com/)
 
 ## Installation
 

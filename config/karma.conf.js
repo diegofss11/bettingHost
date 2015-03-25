@@ -24,14 +24,10 @@ module.exports = function(config) {
         'public/js/app.js',
         'public/js/**/*.controller.js',
         'public/js/**/*.service.js',
-        'public/js/**/*.directive.js',
         'public/js/**/*.filter.js',
 
         //TESTS FILES
         'test/unit/**/*.spec.js',
-
-        //MOCK FILES
-        '../resources/*.json'
     ],
 
 
