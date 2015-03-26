@@ -11,6 +11,7 @@
 		/*
 		 * Public function
 		 * Gets resource file data.txt to be processed
+		 * Returns promise
 		 */
 		_self.getResourceFile = function() {
 			return $http.get('/resources/data.txt');
@@ -19,6 +20,7 @@
 		/*
 		 * Private function
 		 * Gets company commission rate for each type
+		 * Returns commissionRate
 		 */
 		function _getCommissionRate(type) {
 			switch(type) {
@@ -36,23 +38,20 @@
 		/*
 		 * Private function
 		 * Gets stake based on the type and selections
+		 * Returns totalStake
 		 */
 		function _getStake(type, selections) {
-			var bets = _self.data.bets,
+			var bets = _self.data.Bets,
 				length = bets.length,
 				totalStake = 0,
-				bet, betProduct, betSelections, betStake;
+				bet;
 
 			for (var i = 0; i < length; i++) {
 				bet = bets[i].Bet;
-				betProduct = bet.split(':')[0];
-				betSelections = bet.split(':')[1];
-				betStake = parseFloat(bet.split(':')[2]);
 
-				//used double equals to compare x,x with [x, x]
-				if (type === betProduct && selections == betSelections) {
-					betSelections = bet.split(':')[1];
-					totalStake += betStake;
+				//using angular.equals since `===` compares object references
+				if (type === bet.type && angular.equals(selections, bet.selections)) {
+					totalStake += bet.stake;
 				}
 			}
 
@@ -62,21 +61,20 @@
 		/*
 		 * Private function
 		 * Gets win pool value deducting company commission
+		 * Returns winPool
 		 */
 		function _getWinPool(type) {
-			var bets = _self.data.bets,
+			var bets = _self.data.Bets,
 				length = bets.length,
 				winPool = 0,
 				commission = _getCommissionRate(type),
-				bet, betProduct, betStake;
+				bet;
 
 			for (var i = 0; i < length; i++) {
 				bet = bets[i].Bet;
-				betProduct = bet.split(':')[0];
 
-				if (type === betProduct) {
-					betStake = parseFloat(bet.split(':')[2]);
-					winPool += betStake;
+				if (type === bet.type) {
+					winPool += bet.stake;
 				}
 			}
 
@@ -92,19 +90,18 @@
 		 */
 		function _resolveOutput(formattedBets) {
 			var result = formattedBets.Result,
-				horses = result.split(':'),
 				output, payout;
 
-			payout = _self.getPayout(Constants.TYPE_WIN, horses[0]);
-			output = 'Win:' + horses[0] + ':$' + payout + '\n';
+			payout = _self.getPayout(Constants.TYPE_WIN, result.winners[0]);
+			output = 'Win:' + result.winners[0] + ':$' + payout + '\n';
 
 			for(var i = 0; i < Constants.NUMBER_OF_RUNNERS; i++) {
-				payout = _self.getPayout(Constants.TYPE_PLACE, horses[i]);
-				output += 'Place:' + horses[i] + ':$' + payout + '\n';
+				payout = _self.getPayout(Constants.TYPE_PLACE, result.winners[i]);
+				output += 'Place:' + result.winners[i] + ':$' + payout + '\n';
 			}
 
-			payout = _self.getPayout(Constants.TYPE_EXACTA, [horses[0], horses[1]]);
-			output += 'Exacta:' + horses[0] + ',' + horses[1] + ':$' + payout + '\n';
+			payout = _self.getPayout(Constants.TYPE_EXACTA, [result.winners[0], result.winners[1]]);
+			output += 'Exacta:' + result.winners[0] + ',' + result.winners[1] + ':$' + payout + '\n';
 
 			return output;
 		}
@@ -127,16 +124,16 @@
 		/*
 		 * Public function
 		 * Get payout for a given type and selections
+		 * Returns payout
 		 */
 		_self.getPayout = function(type, selections) {
 			var winPool = _getWinPool(type),
 				winStake = _getStake(type, selections),
 				payout = winPool / winStake;
 
-			if (type === Constants.TYPE_PLACE) {
-				payout = payout / Constants.NUMBER_OF_RUNNERS;
-			}
+			payout = type === Constants.TYPE_PLACE ? payout / Constants.NUMBER_OF_RUNNERS : payout;
 
+			//TODO CHECK WITHOUT +
 			return +payout.toFixed(2);
 		}
 	}

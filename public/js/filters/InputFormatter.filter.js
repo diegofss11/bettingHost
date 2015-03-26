@@ -2,7 +2,7 @@
     'use strict';
 
     /**
-     * [inputFormatter Formats the input value to a customized format ]
+     * [inputFormatter Formats and parse the input value to a customized format]
      * The input is splitted by colons
      *
      * [Format requested]
@@ -10,34 +10,71 @@
      * Result:<first>:<second>:<third>
      *
      */
+
+    var REGEX_GET_BETS = /(Bet:)[A-Z]:[0-9](,[0-9])?:[0-9]+/g,
+        REGEX_GET_RESULT = /(Result:)[0-9]:[0-9]:[0-9]/g,
+        COLON_DELIMITER = ':',
+        COMMA_DELIMITER = ',',
+        formattedObject = {
+            Bets: [],
+            Result: null
+        };
+
     function InputFormatter() {
         return function(input) {
-            var formattedObject = {
-                    "bets":[]
-                },
-                stringified = JSON.stringify(input),
-                bets = stringified.split('\\n'),
-                betsLen = bets.length;
+            var bets = input.match(REGEX_GET_BETS),
+                result = input.match(REGEX_GET_RESULT)[0];
 
-            for(var i = 0; i < betsLen; i++) {
-                var bet = bets[i],
-                    isBet = bet.split(':')[0],
-                    type = bet.split(':')[1];
-
-                //TODO WORKAROUND
-                if (isBet === "\"Bet" || isBet === "Bet" ) {
-                    var selections = bet.split(':')[2],
-                        stake = bet.split(':')[3],
-                        concatenatedBet = type + ':' + selections + ':' + stake;
-
-                    formattedObject.bets.push({ "Bet": concatenatedBet });
-                } else {
-                    formattedObject.Result = bet.split(':')[1] + ':' + bet.split(':')[2] + ':' + bet.split(':')[3];
-                }
-            }
+            _formatsBets(bets);
+            _formatsResult(result);
 
             return formattedObject;
         };
+    }
+
+    /*
+     * Private function
+     * Gets a formatted and parse to integer given a text value
+     * Returns formattedSelections
+     */
+    function _getSelections(selections) {
+        var selections = selections.split(COMMA_DELIMITER),
+            formattedSelections = [];
+
+        for(var i = 0; i < selections.length; i++) {
+             formattedSelections.push(+selections[i]);
+        }
+
+        return formattedSelections;
+    }
+
+    /*
+     * Private method
+     * Formats bets to a requested format
+     */
+    function _formatsBets(bets) {
+        for(var i = 0; i < bets.length; i++) {
+            var bet = bets[i],
+                Bet = {
+                    type: bet.split(COLON_DELIMITER)[1],
+                    selections: _getSelections(bet.split(COLON_DELIMITER)[2]),
+                    stake: parseFloat(bet.split(COLON_DELIMITER)[3])
+                };
+
+            formattedObject.Bets.push({ 'Bet': Bet });
+        }
+    }
+
+    /*
+     * Private method
+     * Formats and parse to integer the result to a requested format
+     */
+    function _formatsResult(result) {
+        var Result = {
+            winners : [ +result.split(COLON_DELIMITER)[1], +result.split(COLON_DELIMITER)[2], +result.split(COLON_DELIMITER)[3]]
+        };
+
+        formattedObject.Result = Result;
     }
 
     InputFormatter.$inject = ['$filter'];
