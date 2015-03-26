@@ -1,0 +1,55 @@
+/*------------------------------------*\
+    #MAIN CSS - OTHER FILES MUST BE IMPORTED HERE
+\*------------------------------------*/
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+/* line 5, ../../../styles/_buttons.scss */
+.btn-results {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+/*------------------------------------*\
+    #CONTAINERS
+\*------------------------------------*/
+/* line 5, ../../../styles/_containers.scss */
+pre {
+  background-color: inherit;
+  border: none;
+  line-height: 1.6;
+}
+
+/* line 11, ../../../styles/_containers.scss */
+.input-container {
+  width: 280px;
+}
+
+/* line 15, ../../../styles/_containers.scss */
+.output {
+  margin-left: 60px;
+}
+/* line 19, ../../../styles/_containers.scss */
+.output.error h3 {
+  color: red;
+}
+
+/* line 25, ../../../styles/_containers.scss */
+.panel {
+  min-width: 580px;
+}
+
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+/* line 5, ../../../styles/_forms.scss */
+textarea {
+  padding: 5px;
+}
+/* line 8, ../../../styles/_forms.scss */
+textarea.input-bets {
+  width: 100%;
+  display: block;
+  resize: none;
+}
