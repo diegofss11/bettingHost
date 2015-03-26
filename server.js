@@ -1,5 +1,6 @@
 var express = require('express'),
-    app = express();
+    app = express(),
+    port = process.env.PORT || 3030;
 
 /**
 * Application setup
@@ -7,6 +8,9 @@ var express = require('express'),
 */
 app.use(express.static(__dirname + '/public'));
 
-app.set('port', 3030);
+app.set('port', port);
 
-app.listen(app.get('port'));
+app.listen(port, function(){
+    console.log('Listening on port ' + port);
+});
+
