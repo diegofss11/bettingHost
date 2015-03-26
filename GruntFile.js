@@ -142,7 +142,7 @@ module.exports = function( grunt ) {
   	// ===========================================================================
 
   	//TESTS
-	grunt.registerTask('test',['karma']);
+	grunt.registerTask('tdd',['karma']);
 	// ==========================================================================
 
 	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'clean:temp', 'watch']);

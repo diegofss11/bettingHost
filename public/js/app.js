@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('bettingHost', ['bettingHost.tpls', 'ui.router'])
+	angular.module('bettingHost', ['bettingHost.tpls', 'formatterModule', 'ui.router'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 

@@ -2,12 +2,16 @@
     'use strict';
 
     /**
+     * Separated module
+     *
      * [inputFormatter Formats and parse the input value to a customized format]
      * The input is splitted by colons
      *
-     * [Format requested]
+     * [Format input]
      * Bet:<product>:<selections>:<stake>
-     * Result:<first>:<second>:<third>
+     *
+     *[Format output]
+     *[Bets] having type, [selections] and stake property and Result having [winners]
      *
      */
 
@@ -61,7 +65,7 @@
                     stake: parseFloat(bet.split(COLON_DELIMITER)[3])
                 };
 
-            formattedObject.Bets.push({ 'Bet': Bet });
+            formattedObject.Bets.push({ Bet: Bet });
         }
     }
 
@@ -79,6 +83,6 @@
 
     InputFormatter.$inject = ['$filter'];
 
-    angular.module('bettingHost')
+    angular.module('formatterModule', [])
         .filter('inputFormatter', InputFormatter);
 })();
