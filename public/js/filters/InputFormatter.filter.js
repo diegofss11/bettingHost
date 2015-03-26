@@ -38,9 +38,9 @@
      * Returns formattedSelections
      */
     function _getSelections(selections) {
-        var selections = selections.split(COMMA_DELIMITER),
-            formattedSelections = [];
+        var formattedSelections = [];
 
+        selections = selections.split(COMMA_DELIMITER);
         for(var i = 0; i < selections.length; i++) {
              formattedSelections.push(+selections[i]);
         }

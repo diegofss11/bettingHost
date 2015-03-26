@@ -17,7 +17,6 @@ module.exports = function(config) {
         //LIBRARY FILES
         'public/vendor/angular/angular.js',
         'public/vendor/angular-mocks/angular-mocks.js',
-        'public/vendor/angular-resource/angular-resource.js',
         'public/vendor/angular-ui-router/release/angular-ui-router.js',
         'public/dist/js/templatesCache.js',
 

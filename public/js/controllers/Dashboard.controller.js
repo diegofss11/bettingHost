@@ -6,17 +6,17 @@
 	 *
 	 */
 	function DashboardController($filter, betDataProvider) {
-		var _self = this, promise;
+		var _self = this;
 
 		/*
 		 * IIFE method
 		 * Get a example bet/result as default
 		 */
 		(function() {
-			promise = betDataProvider.getResourceFile();
+			var promise = betDataProvider.getResourceFile();
 
 			promise.then(function(result) {
-				_self.race = {
+				 _self.race = {
 					input: result.data
 				};
 			});
@@ -30,7 +30,7 @@
 			var formattedBets = $filter('inputFormatter')(_self.race.input);
 
 			_self.race.output = betDataProvider.processOutput(formattedBets);
-		}
+		};
 	}
 
 	DashboardController.$inject = ['$filter', 'betDataProvider'];

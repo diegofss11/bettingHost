@@ -33,30 +33,32 @@
 				default:
 					return 0;
 			}
-		};
+		}
 
 		/*
 		 * Private function
-		 * Gets stake based on the type and selections
+		 * Gets stake based on the type and winner
 		 * Returns totalStake
 		 */
-		function _getStake(type, selections) {
+		function _getStake(type, winner) {
 			var bets = _self.data.Bets,
 				length = bets.length,
 				totalStake = 0,
 				bet;
 
+			//TODO RETHINK
+			winner = Array.isArray(winner) ? winner : [winner];
+
 			for (var i = 0; i < length; i++) {
 				bet = bets[i].Bet;
-
 				//using angular.equals since `===` compares object references
-				if (type === bet.type && angular.equals(selections, bet.selections)) {
+				if (type === bet.type && angular.equals(winner, bet.selections)) {
 					totalStake += bet.stake;
 				}
 			}
 
 			return totalStake;
-		};
+		}
 
 		/*
 		 * Private function
@@ -79,7 +81,7 @@
 			}
 
 			return winPool * (1 - commission);
-		};
+		}
 
 		/*
 		 * Private function
@@ -92,14 +94,17 @@
 			var result = formattedBets.Result,
 				output, payout;
 
+			//WIN statement
 			payout = _self.getPayout(Constants.TYPE_WIN, result.winners[0]);
 			output = 'Win:' + result.winners[0] + ':$' + payout + '\n';
 
+			//PLACE statement
 			for(var i = 0; i < Constants.NUMBER_OF_RUNNERS; i++) {
 				payout = _self.getPayout(Constants.TYPE_PLACE, result.winners[i]);
 				output += 'Place:' + result.winners[i] + ':$' + payout + '\n';
 			}
 
+			//EXACTA statement
 			payout = _self.getPayout(Constants.TYPE_EXACTA, [result.winners[0], result.winners[1]]);
 			output += 'Exacta:' + result.winners[0] + ',' + result.winners[1] + ':$' + payout + '\n';
 
@@ -119,7 +124,7 @@
 			}
 
 			return output;
-		};
+		}
 
 		/*
 		 * Public function
@@ -135,7 +140,7 @@
 
 			//TODO CHECK WITHOUT +
 			return +payout.toFixed(2);
-		}
+		};
 	}
 
 	BetDataProviderService.$inject = ['$http', 'Constants'];
