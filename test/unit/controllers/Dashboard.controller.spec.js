@@ -1,10 +1,24 @@
 (function() {
 	'use strict';
 
-	describe('Controller: dashboardController', function(){
+	fdescribe('Controller: dashboardController', function(){
 
 		var $scope, $httpBackend,
-			ctrl, service, innerFilterSpy, filter;
+			ctrl, service, innerFilterSpy, filter,
+			formattedBet = {
+				Bets: [
+					{
+						Bet: {
+							type: 'P',
+							selections: [4],
+							stake: 72
+						}
+					}
+				],
+				Result: {
+					winners: [4, 1, 2]
+				}
+			};
 
 		beforeEach(module('bettingHost'));
 
@@ -12,7 +26,7 @@
 			$scope = _$rootScope_.$new();
 			$httpBackend = _$httpBackend_;
 			service = _betDataProvider_;
-			filter = jasmine.createSpy().and.returnValue('formattedBets');
+			filter = jasmine.createSpy().and.returnValue(formattedBet);
 			innerFilterSpy = jasmine.createSpy().and.returnValue(filter);
 
 			ctrl = _$controller_('dashboardController', {
@@ -38,7 +52,7 @@
 			});
 		});
 
-		describe('#processResult', function() {
+		fdescribe('#processResult', function() {
 			beforeEach(function() {
 				ctrl.processResult();
 			});
@@ -48,8 +62,16 @@
 				expect(filter).toHaveBeenCalledWith(ctrl.race.input);
 			});
 
-			it('should `processOutput` be called from the server defined filter with given arguments', function() {
-				expect(service.processOutput).toHaveBeenCalledWith('formattedBets');
+			it('should call `processOutput` from the service with given arguments', function() {
+				expect(service.processOutput).toHaveBeenCalledWith(formattedBet);
+			});
+
+			it('should output error if bet is invalid', function() {
+				expect(ctrl.race.error).toBe('Invalid input text');
+			});
+
+			fit('should not call processOutput if bet is invalid', function() {
+				expect(service.processOutput).not.toHaveBeenCalled();
 			});
 		});
 	});

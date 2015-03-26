@@ -118,6 +118,8 @@
 		_self.processOutput = function(formattedBets) {
 			var output = 'invalid input';
 
+			_self.data = null;
+
 			if(formattedBets) {
 				_self.data = formattedBets;
 				output = _resolveOutput(formattedBets);

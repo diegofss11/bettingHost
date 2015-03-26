@@ -22,6 +22,8 @@ pre {
 
 .output {
   margin-left: 60px; }
+  .output.error h3 {
+    color: red; }
 
 .panel {
   min-width: 580px; }

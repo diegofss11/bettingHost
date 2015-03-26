@@ -28,8 +28,12 @@
 		 */
 		_self.processResult = function() {
 			var formattedBets = $filter('inputFormatter')(_self.race.input);
-
-			_self.race.output = betDataProvider.processOutput(formattedBets);
+console.log(formattedBets)
+			if (formattedBets.Result && formattedBets.Bets) {
+				_self.race.output = betDataProvider.processOutput(formattedBets);
+			} else {
+				_self.race.error = 'Invalid input text';
+			}
 		};
 	}
 

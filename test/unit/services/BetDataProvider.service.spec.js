@@ -65,8 +65,7 @@
 
 		describe('#processOutput', function() {
 			it('should match the result given an input', function() {
-				var mockFormatted = $filter('inputFormatter')(mockValue.inputValue),
-					output = service.processOutput(mockFormatted);
+				var output = service.processOutput(service.data);
 
 				expect(output).toEqual(mockValue.outputValue);
 			});

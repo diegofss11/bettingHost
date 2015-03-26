@@ -26,14 +26,26 @@
 
     function InputFormatter() {
         return function(input) {
-            var bets = input.match(REGEX_GET_BETS),
-                result = input.match(REGEX_GET_RESULT)[0];
+            //invalid input
+            if (_isInputValid(input)) {
+                var bets = input.match(REGEX_GET_BETS),
+                    result = input.match(REGEX_GET_RESULT)[0];
 
-            _formatsBets(bets);
-            _formatsResult(result);
+                _formatsBets(bets);
+                _formatsResult(result);
+            }
 
             return formattedObject;
         };
+    }
+
+    /*
+     * Private function
+     * Checks if the input is valid. Missing Bet or Result is considered invalid
+     * Returns isValid
+     */
+    function _isInputValid(input) {
+        return input.match(REGEX_GET_BETS) && input.match(REGEX_GET_RESULT);
     }
 
     /*

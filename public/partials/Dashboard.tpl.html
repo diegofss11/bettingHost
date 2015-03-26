@@ -13,6 +13,10 @@
         <h3>Race output</h3>
         <pre class="alert alert-info" ng-bind="vmDashboard.race.output"></pre>
     </div>
+    <div class="pull-left output error" ng-if="vmDashboard.race.error">
+        <h3>Invalid input</h3>
+        <pre class="alert alert-danger" ng-bind="vmDashboard.race.error"></pre>
+    </div>
 </div>
 <div class="panel-footer">
     Diego Souza - <a target="_blank" href="https://github.com/diegofss11">GitHub</a>

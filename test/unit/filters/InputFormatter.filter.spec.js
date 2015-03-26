@@ -88,6 +88,23 @@
                         winners: [2, 3, 1]
                     }
                 }
+            },
+            noResultBet = {
+                input: 'Bet:E:2,3:98\nBet:E:1,3:82\nBet:E:3,2:27\nBet:E:1,2:5',
+                output: {
+                    Bets: [
+                        {
+                            Bet: {
+                                type: 'P',
+                                selections: [4],
+                                stake: 72
+                            }
+                        }
+                    ],
+                    Result: {
+                        winners: [4, 1, 2]
+                    }
+                }
             }, filterInputFormatter;
 
         beforeEach(module('bettingHost'));
@@ -113,6 +130,13 @@
                 var result = filterInputFormatter(winnerBet.input);
 
                 expect(result).toEqual(winnerBet.output);
+            });
+
+            it('should failed due to invalid input', function() {
+                var result = filterInputFormatter(noResultBet.input);
+
+                expect(result.Result).toBe(null);
+                expect(result.Bets.length).toBe(0);
             });
         });
     });
