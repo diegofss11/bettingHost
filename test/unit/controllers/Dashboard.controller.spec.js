@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	fdescribe('Controller: dashboardController', function(){
+	describe('Controller: dashboardController', function(){
 
-		var $scope, $httpBackend,
+		var $scope, $httpBackend, $controller,
 			ctrl, service, innerFilterSpy, filter,
 			formattedBet = {
 				Bets: [
@@ -20,25 +20,34 @@
 				}
 			};
 
-		beforeEach(module('bettingHost'));
+		function _createController(hasFilterValid) {
+			if (!hasFilterValid) {
+				formattedBet.Result = null;
+			}
 
-		beforeEach(inject(function(_$rootScope_, _$httpBackend_, _$filter_, _$controller_, _betDataProvider_) {
-			$scope = _$rootScope_.$new();
-			$httpBackend = _$httpBackend_;
-			service = _betDataProvider_;
 			filter = jasmine.createSpy().and.returnValue(formattedBet);
 			innerFilterSpy = jasmine.createSpy().and.returnValue(filter);
 
-			ctrl = _$controller_('dashboardController', {
+			ctrl = $controller('dashboardController', {
 				$scope: $scope,
 				$filter: innerFilterSpy
 			});
 
+			$scope.$apply();
+
+			$httpBackend.flush();
+		}
+
+		beforeEach(module('bettingHost'));
+
+		beforeEach(inject(function(_$rootScope_, _$httpBackend_, _$filter_, _$controller_, _betDataProvider_) {
+			$scope = _$rootScope_.$new();
+			$controller = _$controller_;
+			$httpBackend = _$httpBackend_;
+			service = _betDataProvider_;
+
 			$httpBackend.whenGET('/resources/data.txt').respond( {data: 'resourceFile' });
 			spyOn(service, 'processOutput');
-
-			$scope.$apply();
-			$httpBackend.flush();
 		}));
 
 		afterEach(function() {
@@ -48,12 +57,14 @@
 
 		describe('#init', function() {
 			it('should `race.input` be defined during controller initialization', function() {
+				_createController(true);
 				expect(ctrl.race.input).toBeDefined();
 			});
 		});
 
-		fdescribe('#processResult', function() {
+		describe('#processResult - valid input', function() {
 			beforeEach(function() {
+				_createController(true);
 				ctrl.processResult();
 			});
 
@@ -65,12 +76,19 @@
 			it('should call `processOutput` from the service with given arguments', function() {
 				expect(service.processOutput).toHaveBeenCalledWith(formattedBet);
 			});
+		});
+
+		describe('#processResult - invalid input', function() {
+			beforeEach(function() {
+				_createController(false);
+				ctrl.processResult();
+			});
 
 			it('should output error if bet is invalid', function() {
 				expect(ctrl.race.error).toBe('Invalid input text');
 			});
 
-			fit('should not call processOutput if bet is invalid', function() {
+			it('should not call processOutput if bet is invalid', function() {
 				expect(service.processOutput).not.toHaveBeenCalled();
 			});
 		});

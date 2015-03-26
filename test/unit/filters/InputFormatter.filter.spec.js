@@ -2,7 +2,6 @@
     'use strict';
 
     describe('Filter: inputFormatter', function(){
-
         var placeBet = {
                 input: 'Bet:P:4:72\nResult:4:1:2',
                 output: {

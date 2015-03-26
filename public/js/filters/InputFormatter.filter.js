@@ -19,13 +19,16 @@
         REGEX_GET_RESULT = /(Result:)[0-9]:[0-9]:[0-9]/g,
         COLON_DELIMITER = ':',
         COMMA_DELIMITER = ',',
-        formattedObject = {
-            Bets: [],
-            Result: null
-        };
+        formattedObject;
+
 
     function InputFormatter() {
         return function(input) {
+            formattedObject = {
+                Bets: [],
+                Result: null
+            };
+
             //invalid input
             if (_isInputValid(input)) {
                 var bets = input.match(REGEX_GET_BETS),
