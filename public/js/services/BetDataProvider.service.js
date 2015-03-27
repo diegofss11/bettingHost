@@ -37,7 +37,7 @@
 
 		/*
 		 * Private function
-		 * Gets stake based on the type and winner
+		 * Gets stake based on the type and winner bet
 		 * Returns totalStake
 		 */
 		function _getStake(type, winner) {
@@ -69,11 +69,10 @@
 			var bets = _self.data.Bets,
 				length = bets.length,
 				winPool = 0,
-				commission = _getCommissionRate(type),
-				bet;
+				commission = _getCommissionRate(type);
 
 			for (var i = 0; i < length; i++) {
-				bet = bets[i].Bet;
+				var bet = bets[i].Bet;
 
 				if (type === bet.type) {
 					winPool += bet.stake;
@@ -120,23 +119,23 @@
 
 			_self.data = null;
 
-			if(formattedBets) {
+			if (formattedBets) {
 				_self.data = formattedBets;
 				output = _resolveOutput(formattedBets);
 			}
 
 			return output;
-		}
+		};
 
 		/*
 		 * Public function
-		 * [IS PUBLIC JUST FOR TESTS PURPOSE - should be private since no information is shown in view]
-		 * Get payout for a given type and selections
+		 * [IT'S PUBLIC JUST FOR TESTS PURPOSE - should be private since no information is shown in view]
+		 * Get payout for a given type and winner
 		 * Returns payout
 		 */
-		_self.getPayout = function(type, selections) {
+		_self.getPayout = function(type, winner) {
 			var winPool = _getWinPool(type),
-				winStake = _getStake(type, selections),
+				winStake = _getStake(type, winner),
 				payout = !!winStake ? winPool / winStake : winStake;
 
 			payout = type === Constants.TYPE_PLACE ? payout / Constants.NUMBER_OF_RUNNERS : payout;

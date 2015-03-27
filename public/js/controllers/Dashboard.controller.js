@@ -19,6 +19,8 @@
 				 _self.race = {
 					input: result.data
 				};
+			}, function(error) {
+				alert('Error: ' + error.data);
 			});
 		})();
 
