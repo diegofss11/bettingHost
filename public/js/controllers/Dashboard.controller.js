@@ -23,11 +23,24 @@
 		})();
 
 		/*
+		 * Private method
+		 * Resets state for all variables bound to the view
+		 */
+		function _resetState() {
+			//reset variables
+			_self.race.output = null;
+			_self.race.error = null;
+			_self.isHelpVisible = false;
+		}
+
+		/*
 		 * Public method
 		 * Resolves race output values
 		 */
 		_self.processResult = function() {
 			var formattedBets = $filter('inputFormatter')(_self.race.input);
+
+			_resetState();
 
 			if (formattedBets.Result && formattedBets.Bets) {
 				_self.race.output = betDataProvider.processOutput(formattedBets);

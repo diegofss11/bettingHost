@@ -5,7 +5,7 @@
 	 * [BetDataProviderService Serves the application with resources data]
 	 *
 	 */
-	function BetDataProviderService($http, Constants) {
+	function BetDataProviderService($http, $filter, Constants) {
 		var _self = this;
 
 		/*
@@ -130,22 +130,22 @@
 
 		/*
 		 * Public function
+		 * [IS PUBLIC JUST FOR TESTS PURPOSE - should be private since no information is shown in view]
 		 * Get payout for a given type and selections
 		 * Returns payout
 		 */
 		_self.getPayout = function(type, selections) {
 			var winPool = _getWinPool(type),
 				winStake = _getStake(type, selections),
-				payout = winPool / winStake;
+				payout = !!winStake ? winPool / winStake : winStake;
 
 			payout = type === Constants.TYPE_PLACE ? payout / Constants.NUMBER_OF_RUNNERS : payout;
 
-			//TODO CHECK WITHOUT +
 			return +payout.toFixed(2);
 		};
 	}
 
-	BetDataProviderService.$inject = ['$http', 'Constants'];
+	BetDataProviderService.$inject = ['$http', '$filter', 'Constants'];
 
 	angular.module('bettingHost')
 		.service('betDataProvider', BetDataProviderService);

@@ -8,12 +8,26 @@ pre {
     line-height: 1.6;
 }
 
+h3 {
+    text-align: center;
+}
+
 .input-container {
     width: 280px;
+
+    h3 {
+        display: inline-block;
+    }
+
+    .glyphicon {
+        cursor: pointer;
+        margin-left: 20px;
+        font-size: 18px;
+    }
 }
 
 .output {
-    margin-left: 60px;
+    margin-left: 15px;
 
     &.error {
         h3 {
@@ -22,6 +36,31 @@ pre {
     }
 }
 
+.instructions {
+    font-size: 12px;
+    margin-left: 50px;
+
+    ul {
+        padding-left: 10px;
+    }
+
+    &.ng-hide-add,
+    &.ng-hide-remove {
+        @include transition-property(all);
+        @include transition-duration(0.3s);
+    }
+
+    &.ng-hide-add.ng-hide-add-active,
+    &.ng-hide-remove {
+        opacity:0;
+    }
+
+    &.ng-hide-add,
+    &.ng-hide-remove.ng-hide-remove-active {
+        opacity:1;
+    }
+}
+
 .panel {
-    min-width: 580px;
+    min-width: 1000px;
 }

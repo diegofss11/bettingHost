@@ -61,6 +61,12 @@
 			it('should get dividend from `EXACTA` and selection `2, 3`', function() {
 				expect(service.getPayout(constants.TYPE_EXACTA, [2, 3])).toBe(4.15);
 			});
+
+			it('should get `0` from `ANY TYPE` if no selection was matched', function() {
+				expect(service.getPayout(constants.TYPE_PLACE, [5])).toBe(0);
+				expect(service.getPayout(constants.TYPE_EXACTA, [6])).toBe(0);
+				expect(service.getPayout(constants.TYPE_WIN, [7])).toBe(0);
+			});
 		});
 
 		describe('#processOutput', function() {
