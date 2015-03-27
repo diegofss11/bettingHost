@@ -17,6 +17,11 @@
   background-color: #EF6C00;
   border-color: #FB8C00;
 }
+/* line 19, ../../../styles/_buttons.scss */
+.btn-results[disabled] {
+  background-color: #FFCC80;
+  border-color: #FFF8E1;
+}
 
 /*------------------------------------*\
     #CONTAINERS

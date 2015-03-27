@@ -47,7 +47,7 @@
 			if (formattedBets.Result && formattedBets.Bets) {
 				_self.race.output = betDataProvider.processOutput(formattedBets);
 			} else {
-				_self.race.error = 'Invalid input text';
+				_self.race.error = 'Invalid input';
 			}
 		};
 	}
