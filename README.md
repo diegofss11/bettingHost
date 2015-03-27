@@ -73,3 +73,5 @@ The application server is a NodeJS application that relies upon some 3rd Party n
     node server.js
     ```
 * The application will be in [(http://localhost:3030/)] (http://localhost:3030/)
+
+* Bet instructions can be found on the application
