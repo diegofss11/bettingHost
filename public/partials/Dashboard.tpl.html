@@ -7,7 +7,7 @@
         <h3>Race input</h3>
         <i class="glyphicon glyphicon-question-sign" ng-click="vmDashboard.isHelpVisible = !vmDashboard.isHelpVisible"></i>
         <form name="inputForm" ng-submit="vmDashboard.processResult()">
-            <textarea name="bets" class="input-bets" rows="20" cols="30" ng-model="vmDashboard.race.input" required></textarea>
+            <textarea name="bets" class="input-bets" rows="30" cols="30" ng-model="vmDashboard.race.input" required></textarea>
             <button type="submit" class="btn btn-primary btn-results" ng-disabled="inputForm.$invalid">Results</button>
         </form>
     </div>
