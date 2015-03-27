@@ -22,44 +22,45 @@ pre {
 }
 
 /* line 11, ../../../styles/_containers.scss */
+h2,
 h3 {
   text-align: center;
 }
 
-/* line 15, ../../../styles/_containers.scss */
+/* line 16, ../../../styles/_containers.scss */
 .input-container {
   width: 280px;
 }
-/* line 18, ../../../styles/_containers.scss */
+/* line 19, ../../../styles/_containers.scss */
 .input-container h3 {
   display: inline-block;
 }
-/* line 22, ../../../styles/_containers.scss */
+/* line 23, ../../../styles/_containers.scss */
 .input-container .glyphicon {
   cursor: pointer;
   margin-left: 20px;
   font-size: 18px;
 }
 
-/* line 29, ../../../styles/_containers.scss */
+/* line 30, ../../../styles/_containers.scss */
 .output {
   margin-left: 15px;
 }
-/* line 33, ../../../styles/_containers.scss */
+/* line 34, ../../../styles/_containers.scss */
 .output.error h3 {
   color: red;
 }
 
-/* line 39, ../../../styles/_containers.scss */
+/* line 40, ../../../styles/_containers.scss */
 .instructions {
   font-size: 12px;
   margin-left: 50px;
 }
-/* line 43, ../../../styles/_containers.scss */
+/* line 44, ../../../styles/_containers.scss */
 .instructions ul {
   padding-left: 10px;
 }
-/* line 47, ../../../styles/_containers.scss */
+/* line 48, ../../../styles/_containers.scss */
 .instructions.ng-hide-add, .instructions.ng-hide-remove {
   -moz-transition-property: all;
   -o-transition-property: all;
@@ -70,16 +71,16 @@ h3 {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-/* line 53, ../../../styles/_containers.scss */
+/* line 54, ../../../styles/_containers.scss */
 .instructions.ng-hide-add.ng-hide-add-active, .instructions.ng-hide-remove {
   opacity: 0;
 }
-/* line 58, ../../../styles/_containers.scss */
+/* line 59, ../../../styles/_containers.scss */
 .instructions.ng-hide-add, .instructions.ng-hide-remove.ng-hide-remove-active {
   opacity: 1;
 }
 
-/* line 64, ../../../styles/_containers.scss */
+/* line 65, ../../../styles/_containers.scss */
 .panel {
   min-width: 1000px;
 }
