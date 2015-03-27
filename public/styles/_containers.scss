@@ -1,29 +1,41 @@
 /*------------------------------------*\
     #CONTAINERS
 \*------------------------------------*/
-
-pre {
-    background-color: inherit;
-    border: none;
-    line-height: 1.6;
-}
-
-h2,
-h3 {
-    text-align: center;
-}
-
 .input-container {
     width: 280px;
 
     h3 {
         display: inline-block;
+        margin-right: -65px;
+        width: 100%;
     }
 
     .glyphicon {
+        color: black;
         cursor: pointer;
-        margin-left: 20px;
         font-size: 18px;
+    }
+}
+
+.panel-default {
+    &>.panel-heading,
+    &>.panel-footer {
+        background-color: #002730;
+        color: white;
+
+        h2,
+        h4 {
+            color: white;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #8f8d8e;
+        }
+    }
+
+    a {
+        color: #ED5F16;
     }
 }
 
@@ -38,8 +50,8 @@ h3 {
 }
 
 .instructions {
-    font-size: 12px;
-    margin-left: 50px;
+    width: 250px;
+    margin-left: 15px;
 
     ul {
         padding-left: 10px;

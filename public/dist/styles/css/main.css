@@ -14,53 +14,63 @@
 /*------------------------------------*\
     #CONTAINERS
 \*------------------------------------*/
-/* line 5, ../../../styles/_containers.scss */
-pre {
-  background-color: inherit;
-  border: none;
-  line-height: 1.6;
-}
-
-/* line 11, ../../../styles/_containers.scss */
-h2,
-h3 {
-  text-align: center;
-}
-
-/* line 16, ../../../styles/_containers.scss */
+/* line 4, ../../../styles/_containers.scss */
 .input-container {
   width: 280px;
 }
-/* line 19, ../../../styles/_containers.scss */
+/* line 7, ../../../styles/_containers.scss */
 .input-container h3 {
   display: inline-block;
+  margin-right: -65px;
+  width: 100%;
 }
-/* line 23, ../../../styles/_containers.scss */
+/* line 13, ../../../styles/_containers.scss */
 .input-container .glyphicon {
+  color: black;
   cursor: pointer;
-  margin-left: 20px;
   font-size: 18px;
 }
 
-/* line 30, ../../../styles/_containers.scss */
+/* line 21, ../../../styles/_containers.scss */
+.panel-default > .panel-heading, .panel-default > .panel-footer {
+  background-color: #002730;
+  color: white;
+}
+/* line 26, ../../../styles/_containers.scss */
+.panel-default > .panel-heading h2,
+.panel-default > .panel-heading h4, .panel-default > .panel-footer h2,
+.panel-default > .panel-footer h4 {
+  color: white;
+  font-weight: 600;
+}
+/* line 32, ../../../styles/_containers.scss */
+.panel-default > .panel-heading h4, .panel-default > .panel-footer h4 {
+  color: #8f8d8e;
+}
+/* line 37, ../../../styles/_containers.scss */
+.panel-default a {
+  color: #ED5F16;
+}
+
+/* line 42, ../../../styles/_containers.scss */
 .output {
   margin-left: 15px;
 }
-/* line 34, ../../../styles/_containers.scss */
+/* line 46, ../../../styles/_containers.scss */
 .output.error h3 {
   color: red;
 }
 
-/* line 40, ../../../styles/_containers.scss */
+/* line 52, ../../../styles/_containers.scss */
 .instructions {
-  font-size: 12px;
-  margin-left: 50px;
+  width: 250px;
+  margin-left: 15px;
 }
-/* line 44, ../../../styles/_containers.scss */
+/* line 56, ../../../styles/_containers.scss */
 .instructions ul {
   padding-left: 10px;
 }
-/* line 48, ../../../styles/_containers.scss */
+/* line 60, ../../../styles/_containers.scss */
 .instructions.ng-hide-add, .instructions.ng-hide-remove {
   -moz-transition-property: all;
   -o-transition-property: all;
@@ -71,16 +81,16 @@ h3 {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-/* line 54, ../../../styles/_containers.scss */
+/* line 66, ../../../styles/_containers.scss */
 .instructions.ng-hide-add.ng-hide-add-active, .instructions.ng-hide-remove {
   opacity: 0;
 }
-/* line 59, ../../../styles/_containers.scss */
+/* line 71, ../../../styles/_containers.scss */
 .instructions.ng-hide-add, .instructions.ng-hide-remove.ng-hide-remove-active {
   opacity: 1;
 }
 
-/* line 65, ../../../styles/_containers.scss */
+/* line 77, ../../../styles/_containers.scss */
 .panel {
   min-width: 1000px;
 }
@@ -97,4 +107,28 @@ textarea.input-bets {
   width: 100%;
   display: block;
   resize: none;
+}
+
+/*------------------------------------*\
+    #GLOBALS
+\*------------------------------------*/
+/* line 5, ../../../styles/_globals.scss */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+/* line 10, ../../../styles/_globals.scss */
+pre {
+  background-color: inherit;
+  border: none;
+  line-height: 1.6;
+}
+
+/* line 16, ../../../styles/_globals.scss */
+h2,
+h3,
+h4 {
+  text-align: center;
+  font-weight: 600;
 }

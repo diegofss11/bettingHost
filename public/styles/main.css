@@ -11,6 +11,7 @@ Error: File to import not found or unreadable: compass/css3.
 5: @import "buttons";
 6: @import "containers";
 7: @import "forms";
+8: @import "globals";
 
 Backtrace:
 main.scss:4
@@ -56,4 +57,4 @@ main.scss:4
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: compass/css3.\A        Load paths:\A          \A         on line 4 of main.scss\A \A 1: /*------------------------------------*\\A 2:     #MAIN CSS - OTHER FILES MUST BE IMPORTED HERE\A 3: \*------------------------------------*/\A 4: @import \"compass/css3\";\A 5: @import \"buttons\";\A 6: @import \"containers\";\A 7: @import \"forms\";"; }
+  content: "Error: File to import not found or unreadable: compass/css3.\A        Load paths:\A          \A         on line 4 of main.scss\A \A 1: /*------------------------------------*\\A 2:     #MAIN CSS - OTHER FILES MUST BE IMPORTED HERE\A 3: \*------------------------------------*/\A 4: @import \"compass/css3\";\A 5: @import \"buttons\";\A 6: @import \"containers\";\A 7: @import \"forms\";\A 8: @import \"globals\";"; }
