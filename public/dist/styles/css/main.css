@@ -6,9 +6,16 @@
 \*------------------------------------*/
 /* line 5, ../../../styles/_buttons.scss */
 .btn-results {
+  background-color: #ED5F16;
+  border-color: #FFE0B2;
   width: 100%;
   padding: 8px;
   margin-top: 5px;
+}
+/* line 12, ../../../styles/_buttons.scss */
+.btn-results:hover, .btn-results:active, .btn-results:focus {
+  background-color: #EF6C00;
+  border-color: #FB8C00;
 }
 
 /*------------------------------------*\
@@ -30,47 +37,51 @@
   cursor: pointer;
   font-size: 18px;
 }
+/* line 18, ../../../styles/_containers.scss */
+.input-container .glyphicon:hover {
+  color: #616161;
+}
 
-/* line 21, ../../../styles/_containers.scss */
+/* line 25, ../../../styles/_containers.scss */
 .panel-default > .panel-heading, .panel-default > .panel-footer {
   background-color: #002730;
   color: white;
 }
-/* line 26, ../../../styles/_containers.scss */
+/* line 30, ../../../styles/_containers.scss */
 .panel-default > .panel-heading h2,
 .panel-default > .panel-heading h4, .panel-default > .panel-footer h2,
 .panel-default > .panel-footer h4 {
   color: white;
   font-weight: 600;
 }
-/* line 32, ../../../styles/_containers.scss */
+/* line 36, ../../../styles/_containers.scss */
 .panel-default > .panel-heading h4, .panel-default > .panel-footer h4 {
-  color: #8f8d8e;
+  color: #8F8D8E;
 }
-/* line 37, ../../../styles/_containers.scss */
+/* line 41, ../../../styles/_containers.scss */
 .panel-default a {
   color: #ED5F16;
 }
 
-/* line 42, ../../../styles/_containers.scss */
+/* line 46, ../../../styles/_containers.scss */
 .output {
   margin-left: 15px;
 }
-/* line 46, ../../../styles/_containers.scss */
+/* line 50, ../../../styles/_containers.scss */
 .output.error h3 {
   color: red;
 }
 
-/* line 52, ../../../styles/_containers.scss */
+/* line 56, ../../../styles/_containers.scss */
 .instructions {
   width: 250px;
   margin-left: 15px;
 }
-/* line 56, ../../../styles/_containers.scss */
+/* line 60, ../../../styles/_containers.scss */
 .instructions ul {
   padding-left: 10px;
 }
-/* line 60, ../../../styles/_containers.scss */
+/* line 64, ../../../styles/_containers.scss */
 .instructions.ng-hide-add, .instructions.ng-hide-remove {
   -moz-transition-property: all;
   -o-transition-property: all;
@@ -81,18 +92,25 @@
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-/* line 66, ../../../styles/_containers.scss */
+/* line 70, ../../../styles/_containers.scss */
 .instructions.ng-hide-add.ng-hide-add-active, .instructions.ng-hide-remove {
   opacity: 0;
 }
-/* line 71, ../../../styles/_containers.scss */
+/* line 75, ../../../styles/_containers.scss */
 .instructions.ng-hide-add, .instructions.ng-hide-remove.ng-hide-remove-active {
   opacity: 1;
 }
 
-/* line 77, ../../../styles/_containers.scss */
+/* line 81, ../../../styles/_containers.scss */
 .panel {
   min-width: 1000px;
+}
+
+/* line 85, ../../../styles/_containers.scss */
+.alert-info {
+  background-color: #DCDDDE;
+  border-color: #BDBDBD;
+  color: #424242;
 }
 
 /*------------------------------------*\
@@ -116,16 +134,17 @@ textarea.input-bets {
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+  color: #212121;
 }
 
-/* line 10, ../../../styles/_globals.scss */
+/* line 11, ../../../styles/_globals.scss */
 pre {
   background-color: inherit;
   border: none;
   line-height: 1.6;
 }
 
-/* line 16, ../../../styles/_globals.scss */
+/* line 17, ../../../styles/_globals.scss */
 h2,
 h3,
 h4 {

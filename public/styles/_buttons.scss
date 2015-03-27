@@ -3,7 +3,16 @@
 \*------------------------------------*/
 
 .btn-results {
+    background-color: #ED5F16;
+    border-color: #FFE0B2;
     width: 100%;
     padding: 8px;
     margin-top: 5px;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: #EF6C00;
+        border-color: #FB8C00;
+    }
 }
