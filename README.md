@@ -74,4 +74,9 @@ The application server is a NodeJS application that relies upon some 3rd Party n
     ```
 * The application will be in [(http://localhost:3030/)] (http://localhost:3030/)
 
+* In order to run tests, please execute
+    ```
+    grunt tdd
+    ```
+
 * Bet instructions can be found on the application

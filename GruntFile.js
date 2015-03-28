@@ -29,8 +29,7 @@ module.exports = function( grunt ) {
 			}
 		},
 		clean: {
-			dist: 'public/dist',
-			temp: 'public/dist/js/temp'
+			dist: 'public/dist'
 		},
 		html2js: {
 			options: {
@@ -143,9 +142,9 @@ module.exports = function( grunt ) {
   	// ===========================================================================
 
   	//TESTS
-	grunt.registerTask('tdd',['karma']);
+	grunt.registerTask('tdd',['clean:dist', 'compass', 'html2js', 'karma']);
 	// ==========================================================================
 
-	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'clean:temp', 'watch']);
+	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'watch']);
 };
 
