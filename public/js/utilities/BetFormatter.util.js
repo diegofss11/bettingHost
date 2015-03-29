@@ -75,6 +75,11 @@
             formattedObject.Result = Result;
         }
 
+        /*
+         * Public function
+         * Parses and formats object using regex operations
+         * Returns a formatted/parsed object
+         */
         _self.getFormattedBets = function(input) {
             formattedObject = {
                 Bets: [],

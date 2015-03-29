@@ -75,8 +75,6 @@
             return winPool * (1 - commission);
         }
 
-        //create calculatePayout function
-
         /*
          * Private function
          * Get payout for a given specific bets and winner
