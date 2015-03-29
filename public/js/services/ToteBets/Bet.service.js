@@ -69,6 +69,10 @@
 				}
 			}
 
+			if (type === Constants.TYPE_PLACE) {
+				totalStake = totalStake / Constants.NUMBER_OF_RUNNERS;
+			}
+
 			return totalStake;
 		}
 
@@ -130,7 +134,7 @@
 				winStake = _getStake(bets, winner),
 				payout = !!winStake ? winPool / winStake : winStake;
 
-			payout = type === Constants.TYPE_PLACE ? payout / Constants.NUMBER_OF_RUNNERS : payout;
+			//payout = type === Constants.TYPE_PLACE ? payout / Constants.NUMBER_OF_RUNNERS : payout; //TODO MOVE IT WINSTAKE
 
 			return +payout.toFixed(2);
 		};
@@ -138,15 +142,15 @@
 
 		/*
 		 * Public function
-		 * Returns output values given bets
+		 * Returns prize values given bets
 		 */
-		_self.processOutput = function(formattedBets) {
+		_self.calculatePrize = function(formattedBets) {
 			var output = 'invalid input';
 
 			_self.data = null;
 
 			if (formattedBets) {
-				_self.data = formattedBets;
+				_self.data = formattedBets; //TODO
 				output = _resolveOutput(formattedBets);
 			}
 

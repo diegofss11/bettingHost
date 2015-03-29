@@ -5,7 +5,7 @@
 	 * [dashboardController Handles dashboard application]
 	 *
 	 */
-	function DashboardController($filter, betDataProvider) {
+	function DashboardController(betFormatter, betService) {
 		var _self = this;
 
 		/*
@@ -13,7 +13,7 @@
 		 * Get a example bet/result as default
 		 */
 		(function() {
-			var promise = betDataProvider.getResourceFile();
+			var promise = betService.getResourceFile();
 
 			promise.then(function(result) {
 				 _self.race = {
@@ -29,7 +29,6 @@
 		 * Resets state for all variables bound to the view
 		 */
 		function _resetState() {
-			//reset variables
 			_self.race.output = null;
 			_self.race.error = null;
 			_self.isHelpVisible = false;
@@ -40,19 +39,19 @@
 		 * Resolves race output values
 		 */
 		_self.processResult = function() {
-			var formattedBets = $filter('inputFormatter')(_self.race.input);
+			var formattedBets = betFormatter.getFormattedBets(_self.race.input);
 
 			_resetState();
 
 			if (formattedBets.Result && formattedBets.Bets) {
-				_self.race.output = betDataProvider.processOutput(formattedBets);
+				_self.race.output = betService.calculateResult(formattedBets);
 			} else {
 				_self.race.error = 'Invalid input';
 			}
 		};
 	}
 
-	DashboardController.$inject = ['$filter', 'betDataProvider'];
+	DashboardController.$inject = ['betFormatter', 'betService'];
 
 	angular.module('bettingHost')
 		.controller('dashboardController', DashboardController);
