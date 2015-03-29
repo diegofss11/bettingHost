@@ -2,7 +2,7 @@
     'use strict';
 
     /**
-     * [betFormatter Formats and parse the input value to a customized format]
+     * [betFormatter Formats and Parses the input value to a customized format]
      * The input is splitted by colons
      *
      * [Format input]

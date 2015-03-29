@@ -2,7 +2,7 @@
 	'use strict';
 
 	/**
-	 * [BetService Serves the application with resources data]
+	 * [BetService Serves the application with resources data and calculate result]
 	 *
 	 */
 	function BetService($http, betHelper) {

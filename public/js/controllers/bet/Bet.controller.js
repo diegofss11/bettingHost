@@ -2,7 +2,7 @@
 	'use strict';
 
 	/**
-	 * [betController Bet features shown in the view]
+	 * [betController handles features shown in the view]
 	 *
 	 */
 	function BetController(betFormatter, betService) {

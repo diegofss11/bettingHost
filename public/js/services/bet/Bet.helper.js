@@ -2,7 +2,7 @@
     'use strict';
 
     /**
-     * [BetHelper bet operations]
+     * [BetHelper handles Bet functionalities]
      *
      */
     function BetHelper($filter, Constants) {
