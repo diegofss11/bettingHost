@@ -65,14 +65,6 @@
 			it('should call `betService.calculateResult` from the betService with given arguments', function() {
 				expect(betService.calculateResult).toHaveBeenCalledWith(formattedBet);
 			});
-
-			//it('should output error if bet is invalid', function() {
-			//	expect(ctrl.race.error).toBe('Invalid input');
-			//});
-            //
-			//it('should not call processOutput if bet is invalid', function() {
-			//	expect(betService.calculateResult).not.toHaveBeenCalled();
-			//});
 		});
 	});
 })();

@@ -25,7 +25,8 @@ module.exports = function(config) {
         'public/js/app.js',
         'public/js/**/*.controller.js',
         'public/js/**/*.service.js',
-        'public/js/**/*.filter.js',
+        'public/js/**/*.helper.js',
+        'public/js/**/*.util.js',
 
         //TESTS FILES
         'test/unit/**/*.spec.js'

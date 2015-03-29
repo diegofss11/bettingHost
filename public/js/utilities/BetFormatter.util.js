@@ -6,7 +6,7 @@
      * The input is splitted by colons
      *
      * [Format input]
-     * Bet:<product>:<selections>:<stake>
+     * bet:<product>:<selections>:<stake>
      *
      *[Format output]
      *[Bets] having type, [selections] and stake property and Result having [winners]
@@ -22,7 +22,7 @@
 
         /*
          * Private function
-         * Checks if the input is valid. Missing Bet or Result is considered invalid
+         * Checks if the input is valid. Missing bet or Result is considered invalid
          * Returns isValid
          */
         function _isInputValid(input) {
@@ -94,5 +94,5 @@
     }
 
     angular.module('betUtilities', [])
-        .factory('betFormatter', BetFormatter);
+        .service('betFormatter', BetFormatter);
 })();

@@ -131,5 +131,5 @@
     BetHelper.$inject = ['$filter', 'Constants'];
 
     angular.module('bettingHost')
-        .factory('betHelper', BetHelper);
+        .service('betHelper', BetHelper);
 })();

@@ -76,7 +76,8 @@ module.exports = function( grunt ) {
 		        		'public/js/**/*.controller.js',
 		        		'public/js/**/*.service.js',
 		        		'public/js/**/*.directive.js',
-		        		'public/js/**/*.filter.js',
+		        		'public/js/**/*.util.js',
+						'public/js/**/*.helper.js',
 
 						//CSS
 		          		'public/dist/styles/css/main.css'

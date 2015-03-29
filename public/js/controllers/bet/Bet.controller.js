@@ -2,10 +2,10 @@
 	'use strict';
 
 	/**
-	 * [dashboardController Handles dashboard application]
+	 * [betController Bet features shown in the view]
 	 *
 	 */
-	function DashboardController(betFormatter, betService) {
+	function BetController(betFormatter, betService) {
 		var _self = this;
 
 		/*
@@ -51,8 +51,8 @@
 		};
 	}
 
-	DashboardController.$inject = ['betFormatter', 'betService'];
+	BetController.$inject = ['betFormatter', 'betService'];
 
 	angular.module('bettingHost')
-		.controller('dashboardController', DashboardController);
+		.controller('betController', BetController);
 })();

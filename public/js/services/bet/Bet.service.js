@@ -6,8 +6,7 @@
 	 *
 	 */
 	function BetService($http, betHelper) {
-		var _self = this,
-			formattedBets;
+		var _self = this;
 
 		/*
 		 * Public function

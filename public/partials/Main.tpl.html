@@ -5,21 +5,21 @@
 <div class="panel-body clearfix">
     <div class="input-container pull-left">
         <h3>Race input</h3>
-        <i class="glyphicon glyphicon-question-sign" ng-click="vmDashboard.isHelpVisible = !vmDashboard.isHelpVisible"></i>
-        <form name="inputForm" ng-submit="vmDashboard.processResult()">
-            <textarea name="bets" class="input-bets" rows="30" cols="30" ng-model="vmDashboard.race.input" required></textarea>
+        <i class="glyphicon glyphicon-question-sign" ng-click="vmBet.isHelpVisible = !vmBet.isHelpVisible"></i>
+        <form name="inputForm" ng-submit="vmBet.processResult()">
+            <textarea name="bets" class="input-bets" rows="30" cols="30" ng-model="vmBet.race.input" required></textarea>
             <button type="submit" class="btn btn-primary btn-results" ng-disabled="inputForm.$invalid">Results</button>
         </form>
     </div>
-    <div class="pull-left output" ng-if="!!vmDashboard.race.output">
+    <div class="pull-left output" ng-if="!!vmBet.race.output">
         <h3>Race output</h3>
-        <pre class="alert alert-info" ng-bind="vmDashboard.race.output"></pre>
+        <pre class="alert alert-info" ng-bind="vmBet.race.output"></pre>
     </div>
-    <div class="pull-left output error" ng-if="vmDashboard.race.error">
+    <div class="pull-left output error" ng-if="vmBet.race.error">
         <h3>Invalid input</h3>
-        <pre class="alert alert-danger" ng-bind="vmDashboard.race.error"></pre>
+        <pre class="alert alert-danger" ng-bind="vmBet.race.error"></pre>
     </div>
-    <div class="pull-left instructions" ng-show="vmDashboard.isHelpVisible">
+    <div class="pull-left instructions" ng-show="vmBet.isHelpVisible">
         <h3>Instructions</h3>
         <div class="alert alert-warning">
             <ul>

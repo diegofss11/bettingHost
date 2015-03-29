@@ -1,15 +1,15 @@
 (function(){
 	'use strict';
 
-	angular.module('bettingHost', ['bettingHost.tpls', 'formatterModule', 'ui.router', 'ngAnimate'])
+	angular.module('bettingHost', ['bettingHost.tpls', 'betUtilities', 'ui.router', 'ngAnimate'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
         $stateProvider.state('/', {
             url: '/',
-            controller: 'dashboardController',
-            controllerAs: 'vmDashboard',
-            templateUrl: 'partials/Dashboard.tpl.html'
+            controller: 'betController',
+            controllerAs: 'vmBet',
+            templateUrl: 'partials/Main.tpl.html'
         });
     })
     .constant('Constants', {
