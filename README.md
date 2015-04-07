@@ -85,7 +85,7 @@ The application server is a NodeJS application that relies upon some 3rd Party n
     webdriver-manager update
     ```
 
-once the above step is done, please execute
+*once the above step is done, please execute
     ```
     grunt e2e
     ```
