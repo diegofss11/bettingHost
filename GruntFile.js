@@ -112,7 +112,24 @@ module.exports = function( grunt ) {
 					livereloadOnError: false
 				}
 		    }
-    	}
+    	},
+		protractor: {
+			e2e: {
+					options: {
+						configFile: 'config/protractor.conf.js',
+						keepAlive: true,
+						noColor: false
+					}
+				}
+			},
+			debug: {
+				options: {
+					configFile: 'config/protractor.conf.js',
+					keepAlive: true,
+					noColor: false,
+					debug: true
+				}
+			}
 	});
 
 	// ===========================================================================
@@ -128,7 +145,7 @@ module.exports = function( grunt ) {
     // ===========================================================================
 	grunt.loadNpmTasks('grunt-contrib-compass'); //compile SASS to CSS - must install compass through gem - gem install compass
 	grunt.loadNpmTasks('grunt-contrib-connect'); //connect a webservice
-	grunt.loadNpmTasks('grunt-contrib-clean'); //
+	grunt.loadNpmTasks('grunt-contrib-clean'); //clean folder
 	grunt.loadNpmTasks('grunt-contrib-jshint'); //keep JavaScript code consistent
 	grunt.loadNpmTasks('grunt-contrib-uglify');	//minimify javascript files
 	grunt.loadNpmTasks('grunt-contrib-watch'); //run predefined tasks whenever watched file patterns are added, changed or deleted.
@@ -136,6 +153,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks('grunt-injector'); //injects css and js in a file
 	grunt.loadNpmTasks('grunt-open'); //open urls and files from a grunt task
 	grunt.loadNpmTasks('grunt-karma'); //karma test runner
+	grunt.loadNpmTasks('grunt-protractor-runner'); //protractor runner
 
 
 	// ===========================================================================
@@ -144,6 +162,8 @@ module.exports = function( grunt ) {
 
   	//TESTS
 	grunt.registerTask('tdd',['clean:dist', 'compass', 'html2js', 'karma']);
+
+	grunt.registerTask('e2e', ['protractor:e2e']);
 	// ==========================================================================
 
 	grunt.registerTask('default',['clean:dist', 'compass', 'html2js', 'injector', 'watch']);

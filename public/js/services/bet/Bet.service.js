@@ -14,7 +14,9 @@
 		 * Returns promise
 		 */
 		_self.getResourceFile = function() {
-			return $http.get('/resources/data.txt');
+			return $http.get('/resources/data.txt').then(function(response) {
+				return response.data;
+			});
 		};
 
 		/*

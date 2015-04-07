@@ -96,8 +96,10 @@
 
             return formattedObject;
         };
+
+        return _self;
     }
 
     angular.module('betUtilities', [])
-        .service('betFormatter', BetFormatter);
+        .factory('betFormatter', BetFormatter);
 })();

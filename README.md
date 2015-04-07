@@ -74,9 +74,20 @@ The application server is a NodeJS application that relies upon some 3rd Party n
     ```
 * The application will be in [(http://localhost:3030/)] (http://localhost:3030/)
 
-* In order to run tests, please execute
+* In order to run unit tests, please execute
     ```
     grunt tdd
+    ```
+
+* In order to run End2End tests, please install protractor globally and install/update webdriver-manager:
+    ```
+    npm install -g protractor
+    webdriver-manager update
+    ```
+
+once the above step is done, please execute
+    ```
+    grunt e2e
     ```
 
 * Bet instructions can be found on the application

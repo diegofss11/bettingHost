@@ -124,10 +124,12 @@
 
             return output;
         };
+
+        return _self;
     }
 
     BetHelper.$inject = ['$filter', 'Constants'];
 
     angular.module('bettingHost')
-        .service('betHelper', BetHelper);
+        .factory('betHelper', BetHelper);
 })();

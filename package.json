@@ -26,9 +26,13 @@
     "grunt-injector": "^0.6.0",
     "grunt-karma": "^0.10.1",
     "grunt-open": "^0.2.3",
+    "grunt-protractor-runner": "^2.0.0",
     "jasmine-core": "^2.2.0",
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "time-grunt": "^1.1.0"
+  },
+  "scripts": {
+    "install": "./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   }
 }

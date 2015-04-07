@@ -17,7 +17,7 @@
 
 			promise.then(function(result) {
 				 _self.race = {
-					input: result.data
+					input: result
 				};
 			}, function(error) {
 				alert('Error: ' + error.data);
